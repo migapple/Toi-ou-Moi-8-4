@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5304E1AF22C658AB009E7F0D /* box-incoming-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5304E1AE22C658AB009E7F0D /* box-incoming-7.png */; };
+		5304E1B122C658B3009E7F0D /* box-outgoing-7.png in Resources */ = {isa = PBXBuildFile; fileRef = 5304E1B022C658B3009E7F0D /* box-outgoing-7.png */; };
 		535D481122AAA04000A282D3 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D481022AAA04000A282D3 /* CoreData.swift */; };
 		53600D6B22AE92F300ACEA8E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53600D6A22AE92F300ACEA8E /* Settings.bundle */; };
 		536BAEE622C33E9B00901F3D /* ExportToCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BAEE522C33E9B00901F3D /* ExportToCSV.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5304E1AE22C658AB009E7F0D /* box-incoming-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-incoming-7.png"; sourceTree = "<group>"; };
+		5304E1B022C658B3009E7F0D /* box-outgoing-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-outgoing-7.png"; sourceTree = "<group>"; };
 		535D481022AAA04000A282D3 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		53600D6A22AE92F300ACEA8E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		536BAEE522C33E9B00901F3D /* ExportToCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToCSV.swift; sourceTree = "<group>"; };
@@ -53,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5304E1AD22C6587B009E7F0D /* Icones */ = {
+			isa = PBXGroup;
+			children = (
+				5304E1B022C658B3009E7F0D /* box-outgoing-7.png */,
+				5304E1AE22C658AB009E7F0D /* box-incoming-7.png */,
+			);
+			path = Icones;
+			sourceTree = "<group>";
+		};
 		537DBC0B229D3AF100F874A7 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +85,7 @@
 		537DBC16229D3AF100F874A7 /* Toi ou Moi */ = {
 			isa = PBXGroup;
 			children = (
+				5304E1AD22C6587B009E7F0D /* Icones */,
 				537DBC2E229D7E2D00F874A7 /* ViewController.swift */,
 				535D481022AAA04000A282D3 /* CoreData.swift */,
 				536BAEE522C33E9B00901F3D /* ExportToCSV.swift */,
@@ -152,6 +166,8 @@
 				537DBC25229D3AF200F874A7 /* LaunchScreen.storyboard in Resources */,
 				53D5F87122B0074A00A272AC /* clic.mp3 in Resources */,
 				537DBC22229D3AF200F874A7 /* Assets.xcassets in Resources */,
+				5304E1AF22C658AB009E7F0D /* box-incoming-7.png in Resources */,
+				5304E1B122C658B3009E7F0D /* box-outgoing-7.png in Resources */,
 				537DBC1D229D3AF100F874A7 /* Main.storyboard in Resources */,
 				53600D6B22AE92F300ACEA8E /* Settings.bundle in Resources */,
 			);

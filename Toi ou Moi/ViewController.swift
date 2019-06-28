@@ -9,7 +9,8 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+{
     
     var taches : [Tache]?
 
@@ -35,7 +36,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         for index in 0..<activite.activites!.count {
             quoiSegmentedControl.setTitle(activite.activites![index], forSegmentAt: index)
         }
-        
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.gray
@@ -136,8 +136,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    @IBAction func ToutAfficherButton(_ sender: Any) {
-        
+    @IBAction func Tout(_ sender: Any) {
         // On affiche toutes les données
         if afficherTout {
             loadData(moisEncours: 99, choix: quoi)
@@ -155,6 +154,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         miseAjourTotal(taches: taches!)
         maTableView.reloadData()
     }
+    
     
     @IBAction func PlusMoinsStepper(_ sender: UIStepper) {
         // On se déplace de mois en mois
@@ -176,28 +176,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         maTableView.reloadData()
     }
     
-    @IBAction func trashButton(_ sender: UIBarButtonItem) {
+    @IBAction func poubelle(_ sender: Any) {
+                let alertController:UIAlertController = UIAlertController(title: "Supression des données !", message: "Voulez-vous vraiment supprimer toutes les données ?", preferredStyle: .alert)
         
-        exportDatabase()
+                let cancelAction = UIAlertAction(title: "Non, annuler", style: .cancel) { action -> Void in
+                    // don't do anything
+                }
+        
+                let nextAction = UIAlertAction(title: "Oui", style: .destructive) { action -> Void in
+                    self.clearData()
+                    self.taches = []
+                    self.maTableView.reloadData()
+                    self.miseAjourTotal(taches: self.taches!)
+                }
+        
+                alertController.addAction(cancelAction)
+                alertController.addAction(nextAction)
+        
+                self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func `import`(_ sender: Any) {
         importFile()
-        
-//        let alertController:UIAlertController = UIAlertController(title: "Supression des données !", message: "Voulez-vous vraiment supprimer toutes les données ?", preferredStyle: .alert)
-//
-//        let cancelAction = UIAlertAction(title: "Non, annuler", style: .cancel) { action -> Void in
-//            // don't do anything
-//        }
-//
-//        let nextAction = UIAlertAction(title: "Oui", style: .destructive) { action -> Void in
-//            self.clearData()
-//            self.taches = []
-//            self.maTableView.reloadData()
-//            self.miseAjourTotal(taches: self.taches!)
-//        }
-//
-//        alertController.addAction(cancelAction)
-//        alertController.addAction(nextAction)
-//
-//        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    @IBAction func export(_ sender: Any) {
+         exportDatabase()
     }
     
     func miseAjourTotal(taches: [Tache]) {

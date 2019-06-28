@@ -88,12 +88,9 @@ extension ViewController {
     
     func importFile() {
         let numberFormatter = NumberFormatter()
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let nouvelleActivite = NSEntityDescription.insertNewObject(forEntityName: "Tache", into: context)
         
         var dictTaches = [String:String]()
         let arrayTaches = NSMutableArray()
-        var ladate:Date
         
         let importFilePath = NSTemporaryDirectory() + "toiOuMoi.csv"
         let importFileURL = NSURL(fileURLWithPath: importFilePath)
