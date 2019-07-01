@@ -30,7 +30,6 @@ extension ViewController {
     
     func setupData() {
         
-        
         let delegate = UIApplication.shared.delegate as? AppDelegate
         if let context = delegate?.persistentContainer.viewContext {
             
@@ -141,31 +140,5 @@ extension ViewController {
         objet.setValue(libelle, forKey: "libelle")
         
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-    }
-    
-    func getContext() -> NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.persistentContainer.viewContext
-    }
-    
-    func storeObject(nom: String, date: Date, quoi: String, prix: Double, libelle: String) {
-        let context = getContext()
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Tache", in: context)
-        
-        let managedObject = NSManagedObject(entity: entity!, insertInto: context)
-        
-        managedObject.setValue(nom, forKey: "qui")
-        managedObject.setValue(date, forKey: "quand")
-        managedObject.setValue(quoi, forKey: "quoi")
-        managedObject.setValue(prix, forKey: "prix")
-        managedObject.setValue(libelle, forKey: "libelle")
-
-        do {
-            try context.save()
-            print("saved!")
-        } catch {
-            print(error.localizedDescription)
-        }
     }
 }

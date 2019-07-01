@@ -10,6 +10,10 @@ import UIKit
 import CoreData
 import AVFoundation
 
+protocol AjoutViewControllerDelegate {
+    func myVCDidFinish(controller:AjoutViewController)
+}
+
 class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var quiLabelField: UILabel!
@@ -22,9 +26,12 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var quiSegmentedControl: UISegmentedControl!
     @IBOutlet weak var ajouterButton: UIButton!
     @IBOutlet weak var libelleTextField: UITextField!
+    @IBOutlet weak var AjouterUiBarButton: UIBarButtonItem!
     
     // récupéré de ViewController
     var selection:Int?
+    var delegate:AjoutViewControllerDelegate? = nil
+    var tache:Tache?
     
     var rester = false
     var choix = "Restau"
@@ -39,28 +46,57 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         super.viewDidLoad()
         
         let activite = readSetUp()
-        // activitepicker reprend la selection de ViewController
-        activitePicker.selectRow(selection!, inComponent: 0, animated: false)
         
-        // Sélection Moi pour ces sélections
-        if selection == 1 || selection == 3 {
-            quiSegmentedControl.selectedSegmentIndex = 1
-            qui = "Moi"
-        }
-        
-        quiSegmentedControl.setTitle(activite.toi, forSegmentAt: 0)
-        quiSegmentedControl.setTitle(activite.moi, forSegmentAt: 1)
-    
-        
-        monDatePicker.locale = Locale(identifier: "fr_FR")
-        
-        // on donne la main au champ prix
-        prixTextField.becomeFirstResponder()
-        afficheDate()
-        quoiLabelField.text = activite.activites![selection!]
         // on donne la main à la vue sur activitePicker
         activitePicker.delegate = self
+        quiSegmentedControl.setTitle(activite.toi, forSegmentAt: 0)
+        quiSegmentedControl.setTitle(activite.moi, forSegmentAt: 1)
+
+
+        monDatePicker.locale = Locale(identifier: "fr_FR")
+
+        // on donne la main au champ prix
+        prixTextField.becomeFirstResponder()
+        //activitepicker reprend la selection de ViewController
+        activitePicker.selectRow(selection!, inComponent: 0, animated: false)
+
         
+        if isEditing {
+            self.title = "Modification"
+            AjouterUiBarButton.title = "Modification"
+            affiche(tache: tache!)
+            let context = getContext()
+            context.delete(tache!)
+        } else {
+            self.title = "Ajout"
+            afficheDate()
+             // Sélection Moi pour ces sélections
+            if selection == 1 || selection == 3 {
+                quiSegmentedControl.selectedSegmentIndex = 1
+                qui = "Moi"
+            }
+            quoiLabelField.text = activite.activites![selection!]
+       }
+     }
+    
+    func affiche(tache: Tache)  {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = NSLocale(localeIdentifier: "fr_FR") as Locale
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        quiLabelField.text = tache.qui
+        dateLabelField.text = dateFormatter.string(from: tache.quand!)
+        monDatePicker.date = tache.quand!
+        quoiLabelField.text = tache.quoi
+        let prix = NSString(format:"%.2f", tache.prix) as String
+        let prix2 = prix.replacingOccurrences(of: ".", with: ",")
+        prixLabelField.text = prix2
+        prixTextField.text = prix2
+        libelleTextField.text = tache.libelle
+        if tache.qui == "Toi" {
+            quiSegmentedControl.selectedSegmentIndex = 0
+        } else {
+            quiSegmentedControl.selectedSegmentIndex = 1
+        }
      }
 
     @IBAction func Fin(_ sender: Any) {

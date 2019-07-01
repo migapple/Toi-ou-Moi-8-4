@@ -171,6 +171,7 @@
                                             <outlet property="prixLabel" destination="WGj-TL-k4z" id="60c-oC-cRm"/>
                                             <outlet property="quiLabel" destination="24i-uY-WpB" id="UhQ-QH-7Sd"/>
                                             <outlet property="quoiLabel" destination="G0v-6b-u91" id="vHF-xc-Byn"/>
+                                            <segue destination="KOn-s3-WlD" kind="presentation" identifier="Modifier" id="BHi-Nr-shJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -206,7 +207,7 @@
                     <navigationItem key="navigationItem" title="Activites" id="xCQ-ey-IcF">
                         <barButtonItem key="leftBarButtonItem" id="ukU-2h-fFD">
                             <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumValue="-12" maximumValue="12" id="EdL-gE-sJd">
-                                <rect key="frame" x="229" y="7.6666666666666679" width="94" height="29.000000000000004"/>
+                                <rect key="frame" x="16" y="7.6666666666666679" width="94" height="29.000000000000004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="PlusMoinsStepper:" destination="wnd-fY-IpK" eventType="valueChanged" id="yK0-IT-ANR"/>
@@ -260,7 +261,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FHT-Dc-0JK">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Ajout" id="G6V-Pt-cYn">
+                                    <navigationItem id="G6V-Pt-cYn">
                                         <barButtonItem key="leftBarButtonItem" title="Annuler" id="iLY-QI-hye">
                                             <connections>
                                                 <action selector="annulerAction:" destination="KOn-s3-WlD" id="7MJ-zJ-MiV"/>
@@ -397,6 +398,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="AjouterUiBarButton" destination="8lP-Ya-TQ2" id="anb-1r-ofD"/>
                         <outlet property="activitePicker" destination="m7d-ru-HSm" id="OVh-Ld-dEf"/>
                         <outlet property="ajouterButton" destination="GmF-7H-V5o" id="nAJ-p1-D8D"/>
                         <outlet property="dateLabelField" destination="npw-Hg-5d3" id="gTk-sA-78A"/>
@@ -437,4 +439,7 @@
         <image name="box-incoming-7.png" width="29" height="30"/>
         <image name="box-outgoing-7.png" width="29" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="BHi-Nr-shJ"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -29,8 +29,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // initSetup()
+        maTableView.dataSource = self
+        maTableView.delegate = self
+        
         let activite = readSetUp()
         
         for index in 0..<activite.activites!.count {
@@ -199,6 +201,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func `import`(_ sender: Any) {
         importFile()
+        loadData(moisEncours: 99, choix: quoi)
+        titreViewController.title = "Tout"
+        miseAjourTotal(taches: taches!)
+        maTableView.reloadData()
     }
     
     @IBAction func export(_ sender: Any) {
@@ -274,6 +280,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let tache = taches?[indexPath.row] {
+            print(tache)
+        }
+    }
+    
     // Suppression d'une ligne
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -286,11 +298,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 maTableView.reloadData()
             }
         }
+        
+        if editingStyle == .insert {
+            print("insert")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddEvtSegue" {
             let viewVC = segue.destination as! AjoutViewController
+            viewVC.selection = segment
+            viewVC.isEditing = false
+        }
+        
+        if segue.identifier == "Modifier" {
+            let indexPath = maTableView.indexPathForSelectedRow
+            let tache = taches?[indexPath!.row]
+            let viewVC = segue.destination as! AjoutViewController
+            viewVC.isEditing = true
+            viewVC.tache = tache
             viewVC.selection = segment
         }
     }
