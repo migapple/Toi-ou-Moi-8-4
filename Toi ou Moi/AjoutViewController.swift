@@ -27,6 +27,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var ajouterButton: UIButton!
     @IBOutlet weak var libelleTextField: UITextField!
     @IBOutlet weak var AjouterUiBarButton: UIBarButtonItem!
+    @IBOutlet weak var finButton: UIButton!
     
     // récupéré de ViewController
     var selection:Int?
@@ -64,9 +65,9 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if isEditing {
             self.title = "Modification"
             AjouterUiBarButton.title = "Modification"
+            resterSwitch.isHidden = true
+            finButton.isHidden = true
             affiche(tache: tache!)
-            let context = getContext()
-            context.delete(tache!)
         } else {
             self.title = "Ajout"
             afficheDate()
@@ -157,12 +158,25 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             prixTextField.text = "0"
         }
         
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let maDate:Date = dateFormatter.date(from: dateLabelField.text!)!
         numberFormatter.locale = Locale(identifier: "fr_FR")
         let prixDouble = numberFormatter.number(from: prixTextField.text!) as! Double
-        sauvegarde(objet: nouvelleActivite, nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!)
+        
+        if isEditing {
+            tache!.qui = qui
+            tache!.quoi = quoiLabelField.text!
+            tache!.quand = maDate
+            tache!.prix = prixDouble
+            tache!.libelle = libelleTextField.text
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        } else {
+            sauvegarde(objet: nouvelleActivite, nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!)
+        }
+        
         quiLabelField.text = qui
         prixLabelField.text = prixTextField.text
         prixTextField.text = ""
@@ -173,8 +187,6 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         if rester == false {
             self.dismiss(animated: true, completion: nil)
         }
-        
-        
     }
     
     @IBAction func annulerAction(_ sender: Any) {
@@ -211,14 +223,13 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         dateLabelField.text = dateFormatter.string(from: monDatePicker.date)
     }
     
-   
-
     func doubleClic(_ sender: UIButton, event: UIEvent) {
         let touch: UITouch = event.allTouches!.first!
         if (touch.tapCount == 2) {
             
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

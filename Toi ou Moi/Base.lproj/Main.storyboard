@@ -353,7 +353,7 @@
                                 <rect key="frame" x="16" y="138" width="63" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="nSH-xs-dC4">
                                 <rect key="frame" x="310" y="102" width="51" height="31"/>
@@ -402,6 +402,7 @@
                         <outlet property="activitePicker" destination="m7d-ru-HSm" id="OVh-Ld-dEf"/>
                         <outlet property="ajouterButton" destination="GmF-7H-V5o" id="nAJ-p1-D8D"/>
                         <outlet property="dateLabelField" destination="npw-Hg-5d3" id="gTk-sA-78A"/>
+                        <outlet property="finButton" destination="GmF-7H-V5o" id="d2E-wx-7kQ"/>
                         <outlet property="libelleTextField" destination="EmR-BY-3GJ" id="UzO-Qo-PbZ"/>
                         <outlet property="monDatePicker" destination="NDP-uf-3W5" id="HMW-ma-rQx"/>
                         <outlet property="prixLabelField" destination="5xA-RS-pd5" id="phG-wq-PWp"/>
