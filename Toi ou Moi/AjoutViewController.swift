@@ -8,13 +8,14 @@
 
 import UIKit
 import CoreData
+import MapKit
 import AVFoundation
 
 protocol AjoutViewControllerDelegate {
     func myVCDidFinish(controller:AjoutViewController)
 }
 
-class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var quiLabelField: UILabel!
     @IBOutlet weak var quoiLabelField: UILabel!
@@ -28,6 +29,9 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var libelleTextField: UITextField!
     @IBOutlet weak var AjouterUiBarButton: UIBarButtonItem!
     @IBOutlet weak var finButton: UIButton!
+    @IBOutlet weak var carte: MKMapView!
+    @IBOutlet weak var latLabel: UILabel!
+    @IBOutlet weak var lngLabel: UILabel!
     
     // récupéré de ViewController
     var selection:Int?
@@ -39,12 +43,33 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     let datePicker = UIDatePicker()
     let dateFormatter = DateFormatter()
     var qui = "Toi"
-    var lecteur:AVAudioPlayer = AVAudioPlayer()
     let numberFormatter = NumberFormatter()
     let activite = readSetUp()
+    var lat:CLLocationDegrees?
+    var lng:CLLocationDegrees?
+    
+    //geolocalisation
+    var locationManager:CLLocationManager = CLLocationManager()
+    var positionUtilisateur:CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //geolocalisation
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        carte.showsUserLocation = true
+        carte.userLocation.title = "Maison"
+        carte.userLocation.subtitle = "Location"
+        
+        // centre sur position utilisateur
+        guard let coordinate = locationManager.location?.coordinate else { return }
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        carte.setRegion(region, animated: true)
+        
+        annotation()
         
         let activite = readSetUp()
         
@@ -53,17 +78,18 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         quiSegmentedControl.setTitle(activite.toi, forSegmentAt: 0)
         quiSegmentedControl.setTitle(activite.moi, forSegmentAt: 1)
 
-
         monDatePicker.locale = Locale(identifier: "fr_FR")
 
         // on donne la main au champ prix
-        prixTextField.becomeFirstResponder()
+        // prixTextField.becomeFirstResponder()
+        
         //activitepicker reprend la selection de ViewController
         activitePicker.selectRow(selection!, inComponent: 0, animated: false)
 
         
         if isEditing {
             self.title = "Modification"
+            afficheDate()
             AjouterUiBarButton.title = "Modification"
             resterSwitch.isHidden = true
             finButton.isHidden = true
@@ -79,6 +105,56 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             quoiLabelField.text = activite.activites![selection!]
        }
      }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        positionUtilisateur = locations[0]
+        lat = positionUtilisateur?.coordinate.latitude
+        lng = positionUtilisateur?.coordinate.longitude
+        
+        latLabel.text = "lat: \(lat!)"
+        lngLabel.text = "long: \(lng!)"
+    
+        let latDelta:CLLocationDegrees = 0.05
+        let lngDelta:CLLocationDegrees = 0.05
+        
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
+        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, lng!)
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        carte.setRegion(region, animated: true)
+    }
+    
+    func annotation() {
+        carte.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        let coordinate = CLLocationCoordinate2D(latitude: 48.798558, longitude: 2.304355)
+        let annotation = Annotation(coordinate: coordinate, title: "Mairie", subtitle: "Hotel de ville")
+        carte.addAnnotation(annotation)
+        carte.setRegion(annotation.region, animated: true)
+        
+        let coordinate1 = CLLocationCoordinate2D(latitude: 48.7942, longitude: 2.30028)
+        let annotation1 = Annotation(coordinate: coordinate1, title: "Sequoïa", subtitle: "Centre jean Couran")
+        carte.addAnnotation(annotation1)
+        carte.setRegion(annotation.region, animated: true)
+    }
+    
+    final class Annotation: NSObject, MKAnnotation {
+        var coordinate: CLLocationCoordinate2D
+        var title: String?
+        var subtitle: String?
+        
+        init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+            self.coordinate = coordinate
+            self.title = title
+            self.subtitle = subtitle
+            
+            super.init()
+        }
+        
+        var region: MKCoordinateRegion {
+            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            return MKCoordinateRegion(center: coordinate, span: span)
+        }
+    }
     
     func affiche(tache: Tache)  {
         let dateFormatter = DateFormatter()
@@ -138,26 +214,9 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     @IBAction func ajouterAction(_ sender: Any) {
         
-        // Core Data
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        func sauvegarde(objet:NSManagedObject, nom: String, date: Date, quoi: String, prix: Double, libelle: String) {
-            // let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            // definir la valeur de chaque attribut
-            objet.setValue(nom, forKey: "qui")
-            objet.setValue(date, forKey: "quand")
-            objet.setValue(quoi, forKey: "quoi")
-            objet.setValue(prix, forKey: "prix")
-            objet.setValue(libelle, forKey: "libelle")
-            
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        }
-        
-        let nouvelleActivite = NSEntityDescription.insertNewObject(forEntityName: "Tache", into: context)
         if prixTextField.text == "" {
             prixTextField.text = "0"
         }
-        
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
@@ -171,10 +230,8 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             tache!.quand = maDate
             tache!.prix = prixDouble
             tache!.libelle = libelleTextField.text
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            (UIApplication.shared.delegate as! AppDelegate).saveContext()
         } else {
-            sauvegarde(objet: nouvelleActivite, nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!)
+            storeObject(nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!)
         }
         
         quiLabelField.text = qui

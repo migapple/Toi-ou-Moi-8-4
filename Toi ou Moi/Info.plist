@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ToiOuMoi a besoin de vous localiser</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>ToiOuMoi a besoin de vous localiser</string>
 </dict>
 </plist>

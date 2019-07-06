@@ -82,6 +82,8 @@ extension ViewController {
                 export += "\(quiText),\(quandText),\(quoiText),\(prixText),\(libelleText) \n"
             }
         }
+ 
+//        export += "\("Toi"),\(totToiLabel.text),\("Moi"),\(totToiLabel.text),\("") \n"
         print("This is what the app will export: \(export)")
         return export
     }
@@ -116,10 +118,8 @@ extension ViewController {
                     dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
                     let maDate: Date = dateFormatter.date(from: tacheData[1])!
                     
-//                    numberFormatter.locale = Locale(identifier: "fr_FR")
                     numberFormatter.locale = Locale(identifier: "en_EN")
                     let prixDouble = numberFormatter.number(from: tacheData[3]) as! Double
-//                    sauvegarde(objet: nouvelleActivite, nom: tacheData[0], date: maDate, quoi: tacheData[2], prix: prixDouble, libelle: tacheData[4])
                     storeObject(nom: tacheData[0], date: maDate, quoi: tacheData[2], prix: prixDouble, libelle: tacheData[4])
                 }
             } catch {
