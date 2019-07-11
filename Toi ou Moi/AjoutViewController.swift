@@ -47,6 +47,8 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     let activite = readSetUp()
     var lat:CLLocationDegrees?
     var lng:CLLocationDegrees?
+    var latDouble: Double = 0
+    var lngDouble: Double = 0
     
     //geolocalisation
     var locationManager:CLLocationManager = CLLocationManager()
@@ -68,8 +70,6 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         guard let coordinate = locationManager.location?.coordinate else { return }
         let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
         carte.setRegion(region, animated: true)
-        
-        annotation()
         
         let activite = readSetUp()
         
@@ -93,7 +93,9 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             AjouterUiBarButton.title = "Modification"
             resterSwitch.isHidden = true
             finButton.isHidden = true
+            print(tache!)
             affiche(tache: tache!)
+            annotation()
         } else {
             self.title = "Ajout"
             afficheDate()
@@ -110,31 +112,41 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         positionUtilisateur = locations[0]
         lat = positionUtilisateur?.coordinate.latitude
         lng = positionUtilisateur?.coordinate.longitude
+        var location: CLLocationCoordinate2D?
         
-        latLabel.text = "lat: \(lat!)"
-        lngLabel.text = "long: \(lng!)"
+        if isEditing {
+            latLabel.text = "\(tache?.lat ?? 0)"
+            lngLabel.text = "\(tache?.lng ?? 0)"
+        } else {
+            latLabel.text = "\(lat!)"
+            lngLabel.text = "\(lng!)"
+        }
     
         let latDelta:CLLocationDegrees = 0.05
         let lngDelta:CLLocationDegrees = 0.05
         
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
-        let location:CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat!, lng!)
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: location, span: span)
+        
+        if isEditing {
+            location = CLLocationCoordinate2DMake(tache?.lat ?? 0, tache?.lng ?? 0)
+        } else {
+            location = CLLocationCoordinate2DMake(lat!, lng!)
+        }
+        
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: location!, span: span)
         
         carte.setRegion(region, animated: true)
     }
     
     func annotation() {
         carte.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        let coordinate = CLLocationCoordinate2D(latitude: 48.798558, longitude: 2.304355)
-        let annotation = Annotation(coordinate: coordinate, title: "Mairie", subtitle: "Hotel de ville")
+        let coordinate = CLLocationCoordinate2D(latitude: tache!.lat, longitude: tache!.lng)
+        let annotation = Annotation(coordinate: coordinate, title: tache?.libelle, subtitle: "")
         carte.addAnnotation(annotation)
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        
         carte.setRegion(annotation.region, animated: true)
         
-        let coordinate1 = CLLocationCoordinate2D(latitude: 48.7942, longitude: 2.30028)
-        let annotation1 = Annotation(coordinate: coordinate1, title: "Sequoïa", subtitle: "Centre jean Couran")
-        carte.addAnnotation(annotation1)
-        carte.setRegion(annotation.region, animated: true)
     }
     
     final class Annotation: NSObject, MKAnnotation {
@@ -225,20 +237,36 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let prixDouble = numberFormatter.number(from: prixTextField.text!) as! Double
         
         if isEditing {
+            numberFormatter.locale = Locale(identifier: "en_EN")
+            latDouble = numberFormatter.number(from: latLabel.text ?? "0.0") as! Double
+            lngDouble = numberFormatter.number(from: lngLabel.text ?? "0.0") as! Double
+            
+        } else {
+            latDouble = Double(lat!)
+            lngDouble = Double(lng!)
+        }
+        
+        numberFormatter.locale = Locale(identifier: "en_EN")
+        
+        if isEditing {
             tache!.qui = qui
             tache!.quoi = quoiLabelField.text!
             tache!.quand = maDate
             tache!.prix = prixDouble
             tache!.libelle = libelleTextField.text
+            tache!.lat = latDouble
+            tache!.lng = lngDouble
+            
         } else {
-            storeObject(nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!)
-        }
+            storeObject(nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!, lat: latDouble, lng: lngDouble)
+         }
         
         quiLabelField.text = qui
         prixLabelField.text = prixTextField.text
         prixTextField.text = ""
         libelleTextField.text = ""
-        prixTextField.becomeFirstResponder()
+        // prixTextField.becomeFirstResponder()
+
 
         // On revient à la vue précédente
         if rester == false {

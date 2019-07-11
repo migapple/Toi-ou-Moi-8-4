@@ -30,6 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // initSetup()
+        
         maTableView.dataSource = self
         maTableView.delegate = self
         
@@ -56,6 +57,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             ])
     
         // clearData()
+        setupData()
+
         // On charge le mois en cours avec la première activite
         loadData(moisEncours: 0, choix: activite.activites![0])
 
@@ -200,11 +203,25 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     @IBAction func `import`(_ sender: Any) {
-        importFile()
-        loadData(moisEncours: 99, choix: quoi)
-        titreViewController.title = "Tout"
-        miseAjourTotal(taches: taches!)
-        maTableView.reloadData()
+        let alertController:UIAlertController = UIAlertController(title: "Importation des données !", message: "Voulez-vous vraiment importer les données ?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Non, annuler", style: .cancel) { action -> Void in
+            // don't do anything
+        }
+        
+        let nextAction = UIAlertAction(title: "Oui", style: .destructive) { action -> Void in
+            self.importFile()
+            self.loadData(moisEncours: 99, choix: self.quoi)
+            self.titreViewController.title = "Tout"
+            self.miseAjourTotal(taches: self.taches!)
+            self.maTableView.reloadData()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(nextAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
     }
     
     @IBAction func export(_ sender: Any) {

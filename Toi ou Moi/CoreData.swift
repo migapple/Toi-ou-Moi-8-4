@@ -38,16 +38,11 @@ extension ViewController {
             tache1.quand = Date()
             tache1.quoi = "Restaurant"
             tache1.prix = 10
-            tache1.libelle = "Bonjour"
+            tache1.libelle = "Courtepaille"
+            tache1.lat = 48.8172
+            tache1.lng = 2.3300
             
-            let tache2 = NSEntityDescription.insertNewObject(forEntityName: "Tache", into: context) as! Tache
-            tache2.qui = "Michel"
-            tache2.quand = Date()
-            tache2.quoi = "Courses"
-            tache2.prix = 10
-            tache2.libelle = "les copains"
-            
-            taches = [tache1, tache2]
+            taches = [tache1]
             
             do {
                 try context.save()

@@ -58,9 +58,11 @@ extension ViewController {
         var quandText: String = ""
         var prixText: String = ""
         var libelleText: String = ""
+        var latText: String = ""
+        var lngText: String = ""
         
         
-        var export: String = NSLocalizedString("Qui, Quand, Quoi, Prix, Libelle \n", comment: "")
+        var export: String = NSLocalizedString("Qui, Quand, Quoi, Prix, Libelle, lat, lng \n", comment: "")
         for (index, itemList) in taches!.enumerated() {
             if index <= taches!.count - 1 {
                 let Equi = itemList.value(forKey: "qui") as! String?
@@ -68,6 +70,9 @@ extension ViewController {
                 let Eprix = (itemList.value(forKey: "prix") as! Double?)!
                 let Equoi = (itemList.value(forKey: "quoi") as! String?)!
                 let Elibelle = (itemList.value(forKey: "libelle") as! String?)!
+                let Elat = (itemList.value(forKey: "lat") as! Double?)!
+                let Elng = (itemList.value(forKey: "lng") as! Double?)!
+                
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = NSLocale(localeIdentifier: "fr_FR") as Locale
@@ -78,8 +83,10 @@ extension ViewController {
                 quoiText = Equoi
                 prixText = NSString(format:"%.2f", Eprix) as String
                 libelleText = Elibelle
+                latText = NSString(format:"%.2f", Elat) as String
+                lngText = NSString(format:"%.2f", Elng) as String
                 
-                export += "\(quiText),\(quandText),\(quoiText),\(prixText),\(libelleText) \n"
+                export += "\(quiText),\(quandText),\(quoiText),\(prixText),\(libelleText),\(latText),\(lngText) \n"
             }
         }
  
@@ -110,8 +117,11 @@ extension ViewController {
                     dictTaches["quoi"] = "\(tacheData[2])"
                     dictTaches["prix"] = "\(tacheData[3])"
                     dictTaches["libelle"] = "\(tacheData[4])"
+                    dictTaches["lat"] = "\(tacheData[5])"
+                    dictTaches["lng"] = "\(tacheData[6])"
+
                     print("lecture")
-                    print("\(tacheData[0]) \(tacheData[1]) \(tacheData[2]) \(tacheData[3]) \(tacheData[4])" )
+                    print("\(tacheData[0]) \(tacheData[1]) \(tacheData[2]) \(tacheData[3]) \(tacheData[4]) \(tacheData[5]) \(tacheData[6])" )
                     arrayTaches.add(dictTaches)
                     
                     let dateFormatter = DateFormatter()
@@ -120,7 +130,10 @@ extension ViewController {
                     
                     numberFormatter.locale = Locale(identifier: "en_EN")
                     let prixDouble = numberFormatter.number(from: tacheData[3]) as! Double
-                    storeObject(nom: tacheData[0], date: maDate, quoi: tacheData[2], prix: prixDouble, libelle: tacheData[4])
+                    let latDouble = numberFormatter.number(from: tacheData[5]) as! Double
+                    let lngDouble = numberFormatter.number(from: tacheData[6]) as! Double
+                    
+                    storeObject(nom: tacheData[0], date: maDate, quoi: tacheData[2], prix: prixDouble, libelle: tacheData[4], lat: latDouble, lng: lngDouble)
                 }
             } catch {
                 let nserror = error as NSError

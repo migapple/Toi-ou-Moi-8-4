@@ -131,7 +131,7 @@ func getContext() -> NSManagedObjectContext {
     return appDelegate.persistentContainer.viewContext
 }
 
-func storeObject(nom: String, date: Date, quoi: String, prix: Double, libelle: String) {
+func storeObject(nom: String, date: Date, quoi: String, prix: Double, libelle: String, lat: Double, lng: Double) {
     let context = getContext()
     
     let entity = NSEntityDescription.entity(forEntityName: "Tache", in: context)
@@ -143,6 +143,8 @@ func storeObject(nom: String, date: Date, quoi: String, prix: Double, libelle: S
     managedObject.setValue(quoi, forKey: "quoi")
     managedObject.setValue(prix, forKey: "prix")
     managedObject.setValue(libelle, forKey: "libelle")
+    managedObject.setValue(lat, forKey: "lat")
+    managedObject.setValue(lng, forKey: "lng")
     
     do {
         try context.save()
