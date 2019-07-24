@@ -12,6 +12,14 @@
 		535D481122AAA04000A282D3 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535D481022AAA04000A282D3 /* CoreData.swift */; };
 		53600D6B22AE92F300ACEA8E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53600D6A22AE92F300ACEA8E /* Settings.bundle */; };
 		536BAEE622C33E9B00901F3D /* ExportToCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BAEE522C33E9B00901F3D /* ExportToCSV.swift */; };
+		537CEFEF22E75895001A463F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537CEFED22E75895001A463F /* Interface.storyboard */; };
+		537CEFF122E7589C001A463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537CEFF022E7589C001A463F /* Assets.xcassets */; };
+		537CEFF822E7589C001A463F /* Toi ou Moi Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		537CEFFD22E7589C001A463F /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEFFC22E7589C001A463F /* InterfaceController.swift */; };
+		537CEFFF22E7589C001A463F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */; };
+		537CF00122E7589C001A463F /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CF00022E7589C001A463F /* NotificationController.swift */; };
+		537CF00322E7589D001A463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537CF00222E7589D001A463F /* Assets.xcassets */; };
+		537CF00822E7589D001A463F /* Toi ou Moi Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 537CEFEB22E75895001A463F /* Toi ou Moi Watch.app */; };
 		537DBC18229D3AF100F874A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537DBC17229D3AF100F874A7 /* AppDelegate.swift */; };
 		537DBC1D229D3AF100F874A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537DBC1B229D3AF100F874A7 /* Main.storyboard */; };
 		537DBC20229D3AF100F874A7 /* Toi_ou_Moi.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 537DBC1E229D3AF100F874A7 /* Toi_ou_Moi.xcdatamodeld */; };
@@ -22,10 +30,53 @@
 		537DBC33229D7EB500F874A7 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537DBC32229D7EB500F874A7 /* TableViewCell.swift */; };
 		5381246722D089680052312F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5381246622D089680052312F /* pin.png */; };
 		5383B64422AA9ED100AAE2E2 /* CalculDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383B64322AA9ED100AAE2E2 /* CalculDates.swift */; };
+		539B360022E85A50002ED8DB /* ClavierInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */; };
 		53CD6C1522CA613400B39146 /* CoreDataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CD6C1422CA613400B39146 /* CoreDataConnection.swift */; };
 		53D5F87122B0074A00A272AC /* clic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 53D5F87022B0074A00A272AC /* clic.mp3 */; };
 		53F23BE022AFC1DA001911BE /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F23BDF22AFC1DA001911BE /* Setup.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		537CEFF922E7589C001A463F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537DBC0C229D3AF100F874A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537CEFF622E7589C001A463F;
+			remoteInfo = "Toi ou Moi Watch Extension";
+		};
+		537CF00622E7589D001A463F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537DBC0C229D3AF100F874A7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537CEFEA22E75894001A463F;
+			remoteInfo = "Toi ou Moi Watch";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		537CF00C22E7589D001A463F /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				537CEFF822E7589C001A463F /* Toi ou Moi Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537CF01022E7589D001A463F /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				537CF00822E7589D001A463F /* Toi ou Moi Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5304E1AE22C658AB009E7F0D /* box-incoming-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "box-incoming-7.png"; sourceTree = "<group>"; };
@@ -33,6 +84,17 @@
 		535D481022AAA04000A282D3 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		53600D6A22AE92F300ACEA8E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		536BAEE522C33E9B00901F3D /* ExportToCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToCSV.swift; sourceTree = "<group>"; };
+		537CEFEB22E75895001A463F /* Toi ou Moi Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toi ou Moi Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		537CEFEE22E75895001A463F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		537CEFF022E7589C001A463F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		537CEFF222E7589C001A463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Toi ou Moi Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		537CEFFC22E7589C001A463F /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		537CF00022E7589C001A463F /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		537CF00222E7589D001A463F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		537CF00422E7589D001A463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		537CF00522E7589D001A463F /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		537DBC14229D3AF100F874A7 /* Toi ou Moi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toi ou Moi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537DBC17229D3AF100F874A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		537DBC1C229D3AF100F874A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,12 +107,20 @@
 		537DBC32229D7EB500F874A7 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		5381246622D089680052312F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		5383B64322AA9ED100AAE2E2 /* CalculDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculDates.swift; sourceTree = "<group>"; };
+		539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClavierInterfaceController.swift; sourceTree = "<group>"; };
 		53CD6C1422CA613400B39146 /* CoreDataConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConnection.swift; sourceTree = "<group>"; };
 		53D5F87022B0074A00A272AC /* clic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clic.mp3; sourceTree = "<group>"; };
 		53F23BDF22AFC1DA001911BE /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		537CEFF422E7589C001A463F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		537DBC11229D3AF100F874A7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -71,10 +141,36 @@
 			path = Icones;
 			sourceTree = "<group>";
 		};
+		537CEFEC22E75895001A463F /* Toi ou Moi Watch */ = {
+			isa = PBXGroup;
+			children = (
+				537CEFED22E75895001A463F /* Interface.storyboard */,
+				537CEFF022E7589C001A463F /* Assets.xcassets */,
+				537CEFF222E7589C001A463F /* Info.plist */,
+			);
+			path = "Toi ou Moi Watch";
+			sourceTree = "<group>";
+		};
+		537CEFFB22E7589C001A463F /* Toi ou Moi Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				537CEFFC22E7589C001A463F /* InterfaceController.swift */,
+				539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */,
+				537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */,
+				537CF00022E7589C001A463F /* NotificationController.swift */,
+				537CF00222E7589D001A463F /* Assets.xcassets */,
+				537CF00422E7589D001A463F /* Info.plist */,
+				537CF00522E7589D001A463F /* PushNotificationPayload.apns */,
+			);
+			path = "Toi ou Moi Watch Extension";
+			sourceTree = "<group>";
+		};
 		537DBC0B229D3AF100F874A7 = {
 			isa = PBXGroup;
 			children = (
 				537DBC16229D3AF100F874A7 /* Toi ou Moi */,
+				537CEFEC22E75895001A463F /* Toi ou Moi Watch */,
+				537CEFFB22E7589C001A463F /* Toi ou Moi Watch Extension */,
 				537DBC15229D3AF100F874A7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,6 +179,8 @@
 			isa = PBXGroup;
 			children = (
 				537DBC14229D3AF100F874A7 /* Toi ou Moi.app */,
+				537CEFEB22E75895001A463F /* Toi ou Moi Watch.app */,
+				537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,6 +212,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		537CEFEA22E75894001A463F /* Toi ou Moi Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537CF00D22E7589D001A463F /* Build configuration list for PBXNativeTarget "Toi ou Moi Watch" */;
+			buildPhases = (
+				537CEFE922E75894001A463F /* Resources */,
+				537CF00C22E7589D001A463F /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				537CEFFA22E7589C001A463F /* PBXTargetDependency */,
+			);
+			name = "Toi ou Moi Watch";
+			productName = "Toi ou Moi Watch";
+			productReference = 537CEFEB22E75895001A463F /* Toi ou Moi Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		537CEFF622E7589C001A463F /* Toi ou Moi Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537CF00922E7589D001A463F /* Build configuration list for PBXNativeTarget "Toi ou Moi Watch Extension" */;
+			buildPhases = (
+				537CEFF322E7589C001A463F /* Sources */,
+				537CEFF422E7589C001A463F /* Frameworks */,
+				537CEFF522E7589C001A463F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Toi ou Moi Watch Extension";
+			productName = "Toi ou Moi Watch Extension";
+			productReference = 537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		537DBC13229D3AF100F874A7 /* Toi ou Moi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 537DBC29229D3AF200F874A7 /* Build configuration list for PBXNativeTarget "Toi ou Moi" */;
@@ -121,10 +253,12 @@
 				537DBC10229D3AF100F874A7 /* Sources */,
 				537DBC11229D3AF100F874A7 /* Frameworks */,
 				537DBC12229D3AF100F874A7 /* Resources */,
+				537CF01022E7589D001A463F /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				537CF00722E7589D001A463F /* PBXTargetDependency */,
 			);
 			name = "Toi ou Moi";
 			productName = "Toi ou Moi";
@@ -137,10 +271,16 @@
 		537DBC0C229D3AF100F874A7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Michel Garlandat";
 				TargetAttributes = {
+					537CEFEA22E75894001A463F = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					537CEFF622E7589C001A463F = {
+						CreatedOnToolsVersion = 10.3;
+					};
 					537DBC13229D3AF100F874A7 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
@@ -160,11 +300,30 @@
 			projectRoot = "";
 			targets = (
 				537DBC13229D3AF100F874A7 /* Toi ou Moi */,
+				537CEFEA22E75894001A463F /* Toi ou Moi Watch */,
+				537CEFF622E7589C001A463F /* Toi ou Moi Watch Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		537CEFE922E75894001A463F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537CEFF122E7589C001A463F /* Assets.xcassets in Resources */,
+				537CEFEF22E75895001A463F /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537CEFF522E7589C001A463F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				537CF00322E7589D001A463F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		537DBC12229D3AF100F874A7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -183,6 +342,17 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		537CEFF322E7589C001A463F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539B360022E85A50002ED8DB /* ClavierInterfaceController.swift in Sources */,
+				537CF00122E7589C001A463F /* NotificationController.swift in Sources */,
+				537CEFFF22E7589C001A463F /* ExtensionDelegate.swift in Sources */,
+				537CEFFD22E7589C001A463F /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		537DBC10229D3AF100F874A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -202,7 +372,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		537CEFFA22E7589C001A463F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537CEFF622E7589C001A463F /* Toi ou Moi Watch Extension */;
+			targetProxy = 537CEFF922E7589C001A463F /* PBXContainerItemProxy */;
+		};
+		537CF00722E7589D001A463F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537CEFEA22E75894001A463F /* Toi ou Moi Watch */;
+			targetProxy = 537CF00622E7589D001A463F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		537CEFED22E75895001A463F /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				537CEFEE22E75895001A463F /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		537DBC1B229D3AF100F874A7 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -222,6 +413,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		537CF00A22E7589D001A463F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = THRS792BX3;
+				INFOPLIST_FILE = "Toi ou Moi Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Michel-Garlandat.Toi-ou-Moi.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		537CF00B22E7589D001A463F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = THRS792BX3;
+				INFOPLIST_FILE = "Toi ou Moi Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Michel-Garlandat.Toi-ou-Moi.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		537CF00E22E7589D001A463F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K872LUE7FR;
+				IBSC_MODULE = Toi_ou_Moi_Watch_Extension;
+				INFOPLIST_FILE = "Toi ou Moi Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "Michel-Garlandat.Toi-ou-Moi.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		537CF00F22E7589D001A463F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = K872LUE7FR;
+				IBSC_MODULE = Toi_ou_Moi_Watch_Extension;
+				INFOPLIST_FILE = "Toi ou Moi Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "Michel-Garlandat.Toi-ou-Moi.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
 		537DBC27229D3AF200F874A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -377,6 +650,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		537CF00922E7589D001A463F /* Build configuration list for PBXNativeTarget "Toi ou Moi Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537CF00A22E7589D001A463F /* Debug */,
+				537CF00B22E7589D001A463F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537CF00D22E7589D001A463F /* Build configuration list for PBXNativeTarget "Toi ou Moi Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537CF00E22E7589D001A463F /* Debug */,
+				537CF00F22E7589D001A463F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		537DBC0F229D3AF100F874A7 /* Build configuration list for PBXProject "Toi ou Moi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
