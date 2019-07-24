@@ -12,6 +12,8 @@ import Foundation
 
 class ClavierInterfaceController: WKInterfaceController {
 
+    @IBOutlet weak var displayLabel: WKInterfaceLabel!
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
@@ -28,4 +30,42 @@ class ClavierInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    @IBAction func toucheClear() {
+    }
+    
+    @IBAction func touche1() {
+    }
+    
+    @IBAction func touche2() {
+    }
+    
+    @IBAction func touche3() {
+    }
+    
+    @IBAction func touche4() {
+    }
+    
+    @IBAction func touche5() {
+    }
+    
+    @IBAction func touche6() {
+    }
+    
+    @IBAction func touche7() {
+    }
+    
+    @IBAction func touche8() {
+    }
+    
+    @IBAction func touche9() {
+    }
+    
+    @IBAction func touche0() {
+    }
+    
+    @IBAction func toucheVirgule() {
+    }
+    
+    @IBAction func toucheVal() {
+    }
 }

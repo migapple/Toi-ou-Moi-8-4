@@ -34,46 +34,101 @@
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Clavier Interface Controller-->
         <scene sceneID="bcb-m5-jSh">
             <objects>
-                <controller id="cj1-mr-9cI">
+                <controller id="cj1-mr-9cI" customClass="ClavierInterfaceController" customModule="Toi_ou_Moi_Watch_Extension">
                     <items>
                         <group width="1" height="30" alignment="left" id="3Ku-hE-rka">
                             <items>
                                 <label width="0.66600000000000004" alignment="left" text="1234,56" textAlignment="right" id="2pe-RM-pMu"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="C" id="HsT-vG-LcQ"/>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="C" id="HsT-vG-LcQ">
+                                    <connections>
+                                        <action selector="toucheClear" destination="cj1-mr-9cI" id="Ssw-bU-bzZ"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" height="30" alignment="left" id="XqU-fw-Ln8">
                             <items>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="1" id="YhE-QB-Y7v"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="2" id="PTo-77-NTm"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="3" id="5Ok-v1-nKD"/>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="1" id="YhE-QB-Y7v">
+                                    <connections>
+                                        <action selector="touche1" destination="cj1-mr-9cI" id="7nV-ie-ZFM"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="2" id="PTo-77-NTm">
+                                    <connections>
+                                        <action selector="touche2" destination="cj1-mr-9cI" id="db1-sV-jJw"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="3" id="5Ok-v1-nKD">
+                                    <connections>
+                                        <action selector="touche3" destination="cj1-mr-9cI" id="rbX-Jj-THJ"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" height="30" alignment="left" id="Wqr-gn-NSL">
                             <items>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="4" id="9SB-Ns-ro6"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="5" id="Ezd-qn-VYR"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="6" id="OvP-1b-ST2"/>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="4" id="9SB-Ns-ro6">
+                                    <connections>
+                                        <action selector="touche4" destination="cj1-mr-9cI" id="qeC-sL-XCv"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="5" id="Ezd-qn-VYR">
+                                    <connections>
+                                        <action selector="touche5" destination="cj1-mr-9cI" id="dWA-6c-XE8"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="6" id="OvP-1b-ST2">
+                                    <connections>
+                                        <action selector="touche6" destination="cj1-mr-9cI" id="fch-hq-Z6p"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" height="30" alignment="left" id="eI5-ly-7G7">
                             <items>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="7" id="81u-yQ-DS3"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="8" id="w7U-w8-ynu"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="9" id="Y35-vh-NgS"/>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="7" id="81u-yQ-DS3">
+                                    <connections>
+                                        <action selector="touche7" destination="cj1-mr-9cI" id="TkW-ee-ICZ"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="8" id="w7U-w8-ynu">
+                                    <connections>
+                                        <action selector="touche8" destination="cj1-mr-9cI" id="VKk-w6-Ckp"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="9" id="Y35-vh-NgS">
+                                    <connections>
+                                        <action selector="touche9" destination="cj1-mr-9cI" id="TAN-oH-28x"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                         <group width="1" height="30" alignment="left" id="jiw-b1-MHb">
                             <items>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="," id="r2d-sQ-ajM"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="0" id="874-A8-cfC"/>
-                                <button width="0.33300000000000002" height="1" alignment="right" title="Val" id="ReM-85-cYP"/>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="," id="r2d-sQ-ajM">
+                                    <connections>
+                                        <action selector="toucheVirgule" destination="cj1-mr-9cI" id="bAf-3j-JxC"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="0" id="874-A8-cfC">
+                                    <connections>
+                                        <action selector="touche0" destination="cj1-mr-9cI" id="icI-4K-hOW"/>
+                                    </connections>
+                                </button>
+                                <button width="0.33300000000000002" height="1" alignment="right" title="Val" id="ReM-85-cYP">
+                                    <connections>
+                                        <action selector="toucheVal" destination="cj1-mr-9cI" id="lsN-oT-cmM"/>
+                                    </connections>
+                                </button>
                             </items>
                         </group>
                     </items>
+                    <connections>
+                        <outlet property="displayLabel" destination="2pe-RM-pMu" id="Hct-xd-rnZ"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="224" y="615"/>
