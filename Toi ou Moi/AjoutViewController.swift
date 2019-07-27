@@ -86,6 +86,11 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         //activitepicker reprend la selection de ViewController
         activitePicker.selectRow(selection!, inComponent: 0, animated: false)
 
+//        NotificationCenter.default.addObserver(forName: Notification.Name("weGotInfo"), object: nil, queue: nil) { (notification) in
+//            DispatchQueue.main.async {
+//                print("weGotInfo")
+//            }
+//        }
         
         if isEditing {
             self.title = "Modification"

@@ -34,6 +34,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         maTableView.dataSource = self
         maTableView.delegate = self
         
+        // initSetup()
+        
         let activite = readSetUp()
         
         for index in 0..<activite.activites!.count {

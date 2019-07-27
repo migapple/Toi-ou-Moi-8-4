@@ -12,6 +12,8 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
     
+    @IBOutlet weak var activitePicker: WKInterfacePicker!
+    
     class Activite {
         var toi: String?
         var moi: String?
@@ -23,17 +25,23 @@ class InterfaceController: WKInterfaceController {
             self.activites = activites
         }
     }
+    
+    var quoi = "Restau"
 
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
         // Configure interface objects here.
-        
+        initSetup()
         let activite = readSetUp()
+        var pickerItems: [WKPickerItem] = []
         
-//        for index in 0..<activite.activites!.count {
-////            quoiSegmentedControl.setTitle(activite.activites![index], forSegmentAt: index)
-//        }
+        for index in 0..<activite.activites!.count {
+            let pickerItem = WKPickerItem()
+            pickerItem.title = activite.activites![index]
+            pickerItems.append(pickerItem)
+        }
+        activitePicker.setItems(pickerItems)
     }
     
     override func willActivate() {
@@ -65,5 +73,40 @@ class InterfaceController: WKInterfaceController {
         }
         return activite
     }
-
+    
+    func initSetup() {
+        
+        UserDefaults.standard.register(defaults: [String : Any]())
+        let userDefaults = UserDefaults.standard
+        
+        let activite = Activite(toi: "Toi", moi: "Moi", activites: ["Restau","Courses","Essence","Perso","Vacances",""])
+        
+        userDefaults.set(activite.toi, forKey: "toi_0")
+        userDefaults.set(activite.moi, forKey: "moi_0")
+        
+        for index in 0...5 {
+            let lactivite = "activite_\(index)"
+            userDefaults.setValue(activite.activites![index], forKey: lactivite)
+        }
+    }
+    
+    
+    @IBAction func pickerAction(_ value: Int) {
+        let activite = readSetUp()
+        quoi = activite.activites![value]
+    }
+    
+    
+    override func contextForSegue(withIdentifier segueIdentifier: String) -> Any? {
+        var qui = "Toi"
+        if segueIdentifier == "moiSegue" {
+            qui = "Moi"
+        }
+        
+        if segueIdentifier == "toiSegue" {
+            qui = "Toi"
+        }
+        
+        return [qui, quoi]
+    }
 }

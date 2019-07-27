@@ -14,22 +14,29 @@
             <objects>
                 <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Toi_ou_Moi_Watch" customModuleProvider="target">
                     <items>
-                        <picker height="42" alignment="left" id="FNc-se-Ti0"/>
+                        <picker height="42" alignment="left" focusStyle="stack" id="FNc-se-Ti0">
+                            <connections>
+                                <action selector="pickerAction:" destination="AgC-eL-Hgc" id="3Mw-Zf-g4C"/>
+                            </connections>
+                        </picker>
                         <group width="1" alignment="left" id="8V1-Ij-Fb2">
                             <items>
                                 <button width="63" alignment="left" title="Toi " id="vOb-XG-k8L">
                                     <connections>
-                                        <segue destination="cj1-mr-9cI" kind="push" id="pAe-ut-dvF"/>
+                                        <segue destination="cj1-mr-9cI" kind="push" identifier="toiSegue" id="pAe-ut-dvF"/>
                                     </connections>
                                 </button>
                                 <button width="69" alignment="left" title="Moi" id="ZK7-BF-wtO">
                                     <connections>
-                                        <segue destination="cj1-mr-9cI" kind="push" id="ypE-Jw-jXq"/>
+                                        <segue destination="cj1-mr-9cI" kind="push" identifier="moiSegue" id="ypE-Jw-jXq"/>
                                     </connections>
                                 </button>
                             </items>
                         </group>
                     </items>
+                    <connections>
+                        <outlet property="activitePicker" destination="FNc-se-Ti0" id="2I1-tC-7Mn"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
@@ -131,7 +138,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="224" y="615"/>
+            <point key="canvasLocation" x="220" y="698"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -148,14 +155,14 @@
                     </connections>
                 </notificationController>
             </objects>
-            <point key="canvasLocation" x="220" y="907"/>
+            <point key="canvasLocation" x="220" y="978"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
                 <controller id="4sK-HA-Art" customClass="NotificationController" customModule="Toi_ou_Moi_Watch" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="479" y="876"/>
+            <point key="canvasLocation" x="480" y="978"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="Niz-AI-uX2">
@@ -166,6 +173,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ypE-Jw-jXq"/>
+        <segue reference="pAe-ut-dvF"/>
     </inferredMetricsTieBreakers>
 </document>

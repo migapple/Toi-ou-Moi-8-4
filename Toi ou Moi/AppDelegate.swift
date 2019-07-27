@@ -8,15 +8,24 @@
 
 import UIKit
 import CoreData
+import WatchConnectivity
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
+
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Watch Connectivity
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+        
         return true
     }
 
@@ -42,6 +51,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         self.saveContext()
+    }
+    
+    // Watch Connectivity
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if error != nil {
+            print("Error: \(String(describing: error))")
+        } else {
+            print("Ready to talk with the Apple Watch")
+        }
+    }
+    
+    func sessionDidBecomeInactive(_ session: WCSession) {
+        print("Inactive")
+    }
+    
+    func sessionDidDeactivate(_ session: WCSession) {
+        print("Desactivated")
+        WCSession.default.activate()
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        print("This is the user info! \(userInfo)")
+        
+        // Create a Tache Object and save it into core data
+
+        let tache = Tache(context: persistentContainer.viewContext)
+        guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String else {
+            return
+        }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.locale = Locale(identifier: "fr_FR")
+        let prixDouble = numberFormatter.number(from: display) as! Double
+        
+        storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: "çà marche !", lat: 0, lng: 0)
+        
+        
+//        // Send Out a notification
+//        let notification = Notification(name: Notification.Name("weGotInfo"))
+//        NotificationCenter.default.post(notification)
+        
     }
 
     // MARK: - Core Data stack

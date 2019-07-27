@@ -154,9 +154,9 @@
 		537CEFFB22E7589C001A463F /* Toi ou Moi Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
+				537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */,
 				537CEFFC22E7589C001A463F /* InterfaceController.swift */,
 				539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */,
-				537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */,
 				537CF00022E7589C001A463F /* NotificationController.swift */,
 				537CF00222E7589D001A463F /* Assets.xcassets */,
 				537CF00422E7589D001A463F /* Info.plist */,
@@ -189,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				5304E1AD22C6587B009E7F0D /* Icones */,
+				537DBC1B229D3AF100F874A7 /* Main.storyboard */,
+				537DBC17229D3AF100F874A7 /* AppDelegate.swift */,
 				537DBC2E229D7E2D00F874A7 /* ViewController.swift */,
 				535D481022AAA04000A282D3 /* CoreData.swift */,
 				53CD6C1422CA613400B39146 /* CoreDataConnection.swift */,
@@ -197,8 +199,6 @@
 				5383B64322AA9ED100AAE2E2 /* CalculDates.swift */,
 				537DBC30229D7E7100F874A7 /* AjoutViewController.swift */,
 				537DBC32229D7EB500F874A7 /* TableViewCell.swift */,
-				537DBC17229D3AF100F874A7 /* AppDelegate.swift */,
-				537DBC1B229D3AF100F874A7 /* Main.storyboard */,
 				537DBC21229D3AF200F874A7 /* Assets.xcassets */,
 				537DBC23229D3AF200F874A7 /* LaunchScreen.storyboard */,
 				537DBC26229D3AF200F874A7 /* Info.plist */,
@@ -418,7 +418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = THRS792BX3;
+				DEVELOPMENT_TEAM = K872LUE7FR;
 				INFOPLIST_FILE = "Toi ou Moi Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -440,7 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = THRS792BX3;
+				DEVELOPMENT_TEAM = K872LUE7FR;
 				INFOPLIST_FILE = "Toi ou Moi Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,11 +7,20 @@
 //
 
 import WatchKit
+import CoreData
+import WatchConnectivity
 
-class ExtensionDelegate: NSObject, WKExtensionDelegate {
+class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
+    
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
+        
+        // Watch Connectivity
+        if WCSession.isSupported() {
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
     }
 
     func applicationDidBecomeActive() {
@@ -52,5 +61,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
-
+    
+    // Watch Connectivity
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if error != nil {
+            print("Error: \(error)")
+        } else {
+            print("Ready to talk with iOS device")
+        }
+    }
+    
 }
