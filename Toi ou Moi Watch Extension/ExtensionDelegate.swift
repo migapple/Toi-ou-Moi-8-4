@@ -65,10 +65,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     // Watch Connectivity
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if error != nil {
-            print("Error: \(error)")
+            print("Error: \(error ?? "erreur" as! Error)")
         } else {
             print("Ready to talk with iOS device")
         }
+    }
+    
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
+        guard let lat = userInfo["lat"] as? Double, let lng = userInfo["lng"] as? Double  else {
+            return
+        }
+        
+        print("lat: \(lat) - lng: \(lng)")
     }
     
 }

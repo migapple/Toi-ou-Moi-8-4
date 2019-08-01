@@ -11,6 +11,7 @@ import CoreData
 import MapKit
 import AVFoundation
 
+
 protocol AjoutViewControllerDelegate {
     func myVCDidFinish(controller:AjoutViewController)
 }
@@ -125,6 +126,11 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         } else {
             latLabel.text = "\(lat!)"
             lngLabel.text = "\(lng!)"
+            
+            // Transfert vers Apple Watch
+            
+//            Session.default.transferUserInfo(["lat": lat!, "lng": lng])
+            
         }
     
         let latDelta:CLLocationDegrees = 0.05
@@ -148,7 +154,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         let coordinate = CLLocationCoordinate2D(latitude: tache!.lat, longitude: tache!.lng)
         let annotation = Annotation(coordinate: coordinate, title: tache?.libelle, subtitle: "")
         carte.addAnnotation(annotation)
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        //let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
         
         carte.setRegion(annotation.region, animated: true)
         
@@ -254,7 +260,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         numberFormatter.locale = Locale(identifier: "en_EN")
         
         if isEditing {
-            tache!.qui = qui
+            tache!.qui = quiLabelField.text
             tache!.quoi = quoiLabelField.text!
             tache!.quand = maDate
             tache!.prix = prixDouble

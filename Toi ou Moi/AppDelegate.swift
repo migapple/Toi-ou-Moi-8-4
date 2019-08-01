@@ -74,16 +74,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
         print("This is the user info! \(userInfo)")
         
+        var prixDouble : Double = 0
         // Create a Tache Object and save it into core data
 
-        let tache = Tache(context: persistentContainer.viewContext)
+        // let tache = Tache(context: persistentContainer.viewContext)
+        
         guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String else {
             return
         }
         
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale(identifier: "fr_FR")
-        let prixDouble = numberFormatter.number(from: display) as! Double
+        if display != "" {
+            prixDouble = numberFormatter.number(from: display) as! Double
+        } 
         
         storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: "çà marche !", lat: 0, lng: 0)
         
