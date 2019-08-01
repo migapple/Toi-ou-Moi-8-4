@@ -19,14 +19,23 @@
                                 <action selector="pickerAction:" destination="AgC-eL-Hgc" id="3Mw-Zf-g4C"/>
                             </connections>
                         </picker>
+                        <label width="1" alignment="left" text="Label" id="W61-ok-sxp"/>
+                        <button width="1" alignment="left" title="Enregistrer" id="ShB-7b-I6Y">
+                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="enregistrer" destination="AgC-eL-Hgc" id="Jn0-vG-L0A"/>
+                            </connections>
+                        </button>
                         <group width="1" alignment="left" id="8V1-Ij-Fb2">
                             <items>
-                                <button width="63" alignment="left" title="Toi " id="vOb-XG-k8L">
+                                <button width="0.5" alignment="left" title="Toi " id="vOb-XG-k8L">
+                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
                                         <segue destination="cj1-mr-9cI" kind="push" identifier="toiSegue" id="pAe-ut-dvF"/>
                                     </connections>
                                 </button>
-                                <button width="69" alignment="left" title="Moi" id="ZK7-BF-wtO">
+                                <button width="0.5" alignment="left" title="Moi" id="ZK7-BF-wtO">
+                                    <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
                                         <segue destination="cj1-mr-9cI" kind="push" identifier="moiSegue" id="ypE-Jw-jXq"/>
                                     </connections>
@@ -35,6 +44,7 @@
                         </group>
                     </items>
                     <connections>
+                        <outlet property="activiteLabel" destination="W61-ok-sxp" id="2iC-ta-nkG"/>
                         <outlet property="activitePicker" destination="FNc-se-Ti0" id="2I1-tC-7Mn"/>
                     </connections>
                 </controller>

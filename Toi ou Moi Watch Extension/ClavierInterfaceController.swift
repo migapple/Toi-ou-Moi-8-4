@@ -15,6 +15,7 @@ class ClavierInterfaceController: WKInterfaceController {
     var display: String = ""
     var qui = ""
     var quoi = ""
+    var ou = ""
     
 
     @IBOutlet weak var displayLabel: WKInterfaceLabel!
@@ -28,6 +29,8 @@ class ClavierInterfaceController: WKInterfaceController {
         print(qui)
         quoi = values[1] as! String
         print(quoi)
+        ou = values[2] as! String
+        print(ou)
         
     }
 
@@ -109,6 +112,7 @@ class ClavierInterfaceController: WKInterfaceController {
     
     @IBAction func toucheVal() {
         let date = Date()
-        WCSession.default.transferUserInfo(["qui": qui, "quoi": quoi, "date": date, "display": display])
+        WCSession.default.transferUserInfo(["qui": qui, "quoi": quoi, "date": date, "display": display, "ou": ou])
+        pop()
     }
 }

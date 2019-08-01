@@ -13,6 +13,10 @@ import Foundation
 class InterfaceController: WKInterfaceController {
     
     @IBOutlet weak var activitePicker: WKInterfacePicker!
+    @IBOutlet weak var activiteLabel: WKInterfaceLabel!
+    
+    var ou = ""
+    
     
     class Activite {
         var toi: String?
@@ -107,6 +111,28 @@ class InterfaceController: WKInterfaceController {
             qui = "Toi"
         }
         
-        return [qui, quoi]
+        return [qui, quoi, ou]
     }
+    
+    @IBAction func enregistrer() {
+        presentTextInputController(withSuggestions: nil, allowedInputMode: .plain) { [unowned self] result in
+            // 2 convert the returned item to a string if possible
+            guard let result = result?.first as? String else {return}
+//            // 3 insert a new row at the end of the table
+//            self.noteTable.insertRows(at: IndexSet(integer: self.notes.count), withRowType: "Row")
+//            // 4 give our new row the correct text
+//            self.set(row: self.notes.count, to: result)
+            // 5 append the note to our array
+            self.activiteLabel.setText(result)
+            self.ou = result
+//            do {
+//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.notes, requiringSecureCoding: false)
+//                try data.write(to: self.savePath)
+//            } catch {
+//                print("Failed to save data: \(error.localizedDescription).")
+//            }
+            
+        }
+    }
+    
 }

@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
         // let tache = Tache(context: persistentContainer.viewContext)
         
-        guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String else {
+        guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String, let ou =  userInfo["ou"] as? String else {
             return
         }
         
@@ -89,7 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             prixDouble = numberFormatter.number(from: display) as! Double
         } 
         
-        storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: "çà marche !", lat: 0, lng: 0)
+        print("avant storeobject \(ou)")
+        storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: ou, lat: 0, lng: 0)
         
         
 //        // Send Out a notification

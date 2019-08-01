@@ -27,8 +27,12 @@ func readSetUp() -> Activite {
     
     let activite = Activite(toi: "", moi: "", activites: [])
     
-    activite.moi = userDefaults.string(forKey: "moi_0")!
-    activite.toi = userDefaults.string(forKey: "toi_0")!
+    if userDefaults.string(forKey: "moi_0") != nil {
+        activite.moi = userDefaults.string(forKey: "moi_0")!
+        activite.toi = userDefaults.string(forKey: "toi_0")!
+    } else {
+        initSetup()
+    }
     
     // Set the controls to the default values.
     for index in 0...5 {
