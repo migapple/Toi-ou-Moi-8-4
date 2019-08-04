@@ -19,9 +19,12 @@
                                 <action selector="pickerAction:" destination="AgC-eL-Hgc" id="3Mw-Zf-g4C"/>
                             </connections>
                         </picker>
-                        <label width="1" alignment="left" text="Label" id="W61-ok-sxp"/>
+                        <label width="1" alignment="left" text="OU ?" id="W61-ok-sxp">
+                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                        </label>
+                        <separator alignment="left" id="Chp-G6-TVh"/>
                         <button width="1" alignment="left" title="Enregistrer" id="ShB-7b-I6Y">
-                            <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="enregistrer" destination="AgC-eL-Hgc" id="Jn0-vG-L0A"/>
                             </connections>
@@ -29,7 +32,7 @@
                         <group width="1" alignment="left" id="8V1-Ij-Fb2">
                             <items>
                                 <button width="0.5" alignment="left" title="Toi " id="vOb-XG-k8L">
-                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <connections>
                                         <segue destination="cj1-mr-9cI" kind="push" identifier="toiSegue" id="pAe-ut-dvF"/>
                                     </connections>
@@ -46,10 +49,12 @@
                     <connections>
                         <outlet property="activiteLabel" destination="W61-ok-sxp" id="2iC-ta-nkG"/>
                         <outlet property="activitePicker" destination="FNc-se-Ti0" id="2I1-tC-7Mn"/>
+                        <outlet property="moiButton" destination="ZK7-BF-wtO" id="roT-Y6-WUb"/>
+                        <outlet property="toiButton" destination="vOb-XG-k8L" id="jrL-dw-43g"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="220" y="345"/>
+            <point key="canvasLocation" x="200" y="347"/>
         </scene>
         <!--Clavier Interface Controller-->
         <scene sceneID="bcb-m5-jSh">
@@ -166,6 +171,20 @@
                 </notificationController>
             </objects>
             <point key="canvasLocation" x="220" y="978"/>
+        </scene>
+        <!--Map Interface Controller-->
+        <scene sceneID="mSl-J9-asH">
+            <objects>
+                <controller id="266-qv-bjb" customClass="MapInterfaceController" customModule="Toi_ou_Moi_Watch_Extension">
+                    <items>
+                        <map width="1" height="1" alignment="left" isAccessibilityElement="YES" id="vhs-sE-ucI"/>
+                    </items>
+                    <connections>
+                        <outlet property="map" destination="vhs-sE-ucI" id="YJe-no-hta"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="550" y="690"/>
         </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">

@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import MapKit
 import AVFoundation
+import WatchConnectivity
 
 
 protocol AjoutViewControllerDelegate {
@@ -18,6 +19,7 @@ protocol AjoutViewControllerDelegate {
 
 class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     
+
     @IBOutlet weak var quiLabelField: UILabel!
     @IBOutlet weak var quoiLabelField: UILabel!
     @IBOutlet weak var dateLabelField: UILabel!
@@ -128,8 +130,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             lngLabel.text = "\(lng!)"
             
             // Transfert vers Apple Watch
-            
-//            Session.default.transferUserInfo(["lat": lat!, "lng": lng])
+            // WCSession.default.transferUserInfo(["lat": lat!, "lng": lng])
             
         }
     
@@ -270,6 +271,9 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
         } else {
             storeObject(nom: qui, date: maDate, quoi: quoiLabelField.text!, prix: prixDouble, libelle: libelleTextField.text!, lat: latDouble, lng: lngDouble)
+            // MARK: - Transfert vers Apple Watch
+            // Transfert vers Apple Watch
+            WCSession.default.transferUserInfo(["qui": qui])
          }
         
         quiLabelField.text = qui

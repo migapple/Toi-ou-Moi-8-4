@@ -9,13 +9,17 @@
 import WatchKit
 import Foundation
 import WatchConnectivity
+import CoreLocation
 
-class ClavierInterfaceController: WKInterfaceController {
+class ClavierInterfaceController: WKInterfaceController, CLLocationManagerDelegate {
     
     var display: String = ""
     var qui = ""
     var quoi = ""
     var ou = ""
+    var locationManager:CLLocationManager!
+    var lat:CLLocationDegrees?
+    var lng:CLLocationDegrees?
     
 
     @IBOutlet weak var displayLabel: WKInterfaceLabel!
@@ -38,6 +42,8 @@ class ClavierInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
         displayLabel.setText(display)
+        
+        
     }
 
     override func didDeactivate() {
@@ -45,6 +51,25 @@ class ClavierInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+    override init() {
+        super.init()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        manager.stopUpdatingLocation()
+        
+        let location = locations.first
+        lat = location?.coordinate.latitude
+        lng = location?.coordinate.longitude
+    }
     
     @IBAction func toucheClear() {
         if display.count != 0 {
@@ -112,7 +137,12 @@ class ClavierInterfaceController: WKInterfaceController {
     
     @IBAction func toucheVal() {
         let date = Date()
-        WCSession.default.transferUserInfo(["qui": qui, "quoi": quoi, "date": date, "display": display, "ou": ou])
+        WCSession.default.transferUserInfo(["qui": qui, "quoi": quoi, "date": date, "display": display, "ou": ou, "lat": lat!, "lng" : lng!])
+        let defaults = UserDefaults.standard
+        if quoi == "Restau" {
+            defaults.set(qui, forKey: "qui")
+        }
         pop()
     }
 }
+

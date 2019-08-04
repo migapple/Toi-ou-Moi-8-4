@@ -8,14 +8,20 @@
 
 import WatchKit
 import Foundation
+import CoreData
 
-
-class InterfaceController: WKInterfaceController {
+class InterfaceController: WKInterfaceController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var activitePicker: WKInterfacePicker!
     @IBOutlet weak var activiteLabel: WKInterfaceLabel!
+    @IBOutlet weak var toiButton: WKInterfaceButton!
+    @IBOutlet weak var moiButton: WKInterfaceButton!
     
     var ou = ""
+    var locationManager:CLLocationManager!
+    var lat:CLLocationDegrees?
+    var lng:CLLocationDegrees?
+    
     
     
     class Activite {
@@ -38,6 +44,17 @@ class InterfaceController: WKInterfaceController {
         // Configure interface objects here.
         initSetup()
         let activite = readSetUp()
+        
+        // MARK: - Recupération notification Iphone
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "weGotInfo"), object: nil, queue: nil) { (notification) in
+            DispatchQueue.main.async {
+                print("Notification venant de l'iphone")
+            }
+        }
+        
+        quiDernier()
+        
         var pickerItems: [WKPickerItem] = []
         
         for index in 0..<activite.activites!.count {
@@ -46,11 +63,17 @@ class InterfaceController: WKInterfaceController {
             pickerItems.append(pickerItem)
         }
         activitePicker.setItems(pickerItems)
+        activitePicker.focus()
+        activiteLabel.setText("Ou ?")
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        activiteLabel.setText("Ou ?")
+        activitePicker.focus()
+        
+        quiDernier()
     }
     
     override func didDeactivate() {
@@ -118,21 +141,24 @@ class InterfaceController: WKInterfaceController {
         presentTextInputController(withSuggestions: nil, allowedInputMode: .plain) { [unowned self] result in
             // 2 convert the returned item to a string if possible
             guard let result = result?.first as? String else {return}
-//            // 3 insert a new row at the end of the table
-//            self.noteTable.insertRows(at: IndexSet(integer: self.notes.count), withRowType: "Row")
-//            // 4 give our new row the correct text
-//            self.set(row: self.notes.count, to: result)
-            // 5 append the note to our array
             self.activiteLabel.setText(result)
             self.ou = result
-//            do {
-//                let data = try NSKeyedArchiver.archivedData(withRootObject: self.notes, requiringSecureCoding: false)
-//                try data.write(to: self.savePath)
-//            } catch {
-//                print("Failed to save data: \(error.localizedDescription).")
-//            }
-            
         }
     }
     
+    func quiDernier() {
+        let userDefaults = UserDefaults.standard
+        let qui = userDefaults.string(forKey: "qui") ?? "Moi"
+        
+        if qui == "Toi" {
+            moiButton.setBackgroundColor(.green)
+            toiButton.setBackgroundColor(.red)
+        }
+        
+        if qui == "Moi" {
+            moiButton.setBackgroundColor(.red)
+            toiButton.setBackgroundColor(.green)
+        }
+        
+    }
 }

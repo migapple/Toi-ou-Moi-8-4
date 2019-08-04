@@ -36,12 +36,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         // initSetup()
         
-        let activite = readSetUp()
-        
-        for index in 0..<activite.activites!.count {
-            quoiSegmentedControl.setTitle(activite.activites![index], forSegmentAt: index)
-        }
-        
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.gray
         
@@ -60,10 +54,39 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
         // clearData()
         setupData()
-
+        
+        chargementDeDepart()
+        
+        // MARK: - Recupération notification Apple Watch
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "weGotInfo"), object: nil, queue: nil) { (notification) in
+            DispatchQueue.main.async {
+                self.chargementDeDepart()
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let activite = readSetUp()
+        
+        // setupData()
+        loadData(moisEncours: 0, choix: activite.activites![segment])
+        miseAjourTotal(taches: taches!)
+        maTableView.reloadData()
+    }
+    
+    func chargementDeDepart() {
+        
+        let activite = readSetUp()
+        
+        for index in 0..<activite.activites!.count {
+            quoiSegmentedControl.setTitle(activite.activites![index], forSegmentAt: index)
+        }
+        
         // On charge le mois en cours avec la première activite
         loadData(moisEncours: 0, choix: activite.activites![0])
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "fr_FR") as Locale
         dateFormatter.dateFormat = "MM/yyyy"
@@ -74,16 +97,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         titreViewController.title = dateFormatter.string(from: dateDebutMoisPrécédent)
         
-        miseAjourTotal(taches: taches!)
-        maTableView.reloadData()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let activite = readSetUp()
-        
-        // setupData()
-        loadData(moisEncours: 0, choix: activite.activites![segment])
         miseAjourTotal(taches: taches!)
         maTableView.reloadData()
     }

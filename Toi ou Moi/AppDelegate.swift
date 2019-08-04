@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Watch Connectivity
+        // MARK: - Watch Connectivity
         if WCSession.isSupported() {
             WCSession.default.delegate = self
             WCSession.default.activate()
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         self.saveContext()
     }
     
-    // Watch Connectivity
+    // MARK: - Watch Connectivity
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if error != nil {
             print("Error: \(String(describing: error))")
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
 
         // let tache = Tache(context: persistentContainer.viewContext)
         
-        guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String, let ou =  userInfo["ou"] as? String else {
+        guard let qui = userInfo["qui"] as? String, let quoi = userInfo["quoi"] as? String, let date = userInfo["date"] as? Date, let display = userInfo["display"] as? String, let ou =  userInfo["ou"] as? String, let lat =  userInfo["lat"] as? Double, let lng =  userInfo["lng"] as? Double else {
             return
         }
         
@@ -90,12 +90,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         } 
         
         print("avant storeobject \(ou)")
-        storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: ou, lat: 0, lng: 0)
+        storeObject(nom: qui, date: date, quoi: quoi, prix: prixDouble, libelle: ou, lat: lat , lng: lng)
         
-        
-//        // Send Out a notification
-//        let notification = Notification(name: Notification.Name("weGotInfo"))
-//        NotificationCenter.default.post(notification)
+        // MARK: - Send Notification
+        // Send Out a notification
+        let notification = Notification(name: Notification.Name("weGotInfo"))
+        NotificationCenter.default.post(notification)
         
     }
 

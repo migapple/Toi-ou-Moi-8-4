@@ -13,7 +13,6 @@
 		53600D6B22AE92F300ACEA8E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53600D6A22AE92F300ACEA8E /* Settings.bundle */; };
 		536BAEE622C33E9B00901F3D /* ExportToCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536BAEE522C33E9B00901F3D /* ExportToCSV.swift */; };
 		537CEFEF22E75895001A463F /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 537CEFED22E75895001A463F /* Interface.storyboard */; };
-		537CEFF122E7589C001A463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 537CEFF022E7589C001A463F /* Assets.xcassets */; };
 		537CEFF822E7589C001A463F /* Toi ou Moi Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		537CEFFD22E7589C001A463F /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEFFC22E7589C001A463F /* InterfaceController.swift */; };
 		537CEFFF22E7589C001A463F /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEFFE22E7589C001A463F /* ExtensionDelegate.swift */; };
@@ -31,8 +30,10 @@
 		5381246722D089680052312F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5381246622D089680052312F /* pin.png */; };
 		5383B64422AA9ED100AAE2E2 /* CalculDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383B64322AA9ED100AAE2E2 /* CalculDates.swift */; };
 		539B360022E85A50002ED8DB /* ClavierInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */; };
+		53AECA5722F2D541007BE5B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53AECA5622F2D541007BE5B9 /* Assets.xcassets */; };
 		53CD6C1522CA613400B39146 /* CoreDataConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CD6C1422CA613400B39146 /* CoreDataConnection.swift */; };
 		53D5F87122B0074A00A272AC /* clic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 53D5F87022B0074A00A272AC /* clic.mp3 */; };
+		53EABADA22F42D04003F10D3 /* MapInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EABAD822F42CFF003F10D3 /* MapInterfaceController.swift */; };
 		53F23BE022AFC1DA001911BE /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F23BDF22AFC1DA001911BE /* Setup.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +87,6 @@
 		536BAEE522C33E9B00901F3D /* ExportToCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportToCSV.swift; sourceTree = "<group>"; };
 		537CEFEB22E75895001A463F /* Toi ou Moi Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Toi ou Moi Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537CEFEE22E75895001A463F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
-		537CEFF022E7589C001A463F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		537CEFF222E7589C001A463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		537CEFF722E7589C001A463F /* Toi ou Moi Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Toi ou Moi Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537CEFFC22E7589C001A463F /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
@@ -108,8 +108,10 @@
 		5381246622D089680052312F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		5383B64322AA9ED100AAE2E2 /* CalculDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculDates.swift; sourceTree = "<group>"; };
 		539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClavierInterfaceController.swift; sourceTree = "<group>"; };
+		53AECA5622F2D541007BE5B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53CD6C1422CA613400B39146 /* CoreDataConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataConnection.swift; sourceTree = "<group>"; };
 		53D5F87022B0074A00A272AC /* clic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clic.mp3; sourceTree = "<group>"; };
+		53EABAD822F42CFF003F10D3 /* MapInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInterfaceController.swift; sourceTree = "<group>"; };
 		53F23BDF22AFC1DA001911BE /* Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,8 +146,8 @@
 		537CEFEC22E75895001A463F /* Toi ou Moi Watch */ = {
 			isa = PBXGroup;
 			children = (
+				53AECA5622F2D541007BE5B9 /* Assets.xcassets */,
 				537CEFED22E75895001A463F /* Interface.storyboard */,
-				537CEFF022E7589C001A463F /* Assets.xcassets */,
 				537CEFF222E7589C001A463F /* Info.plist */,
 			);
 			path = "Toi ou Moi Watch";
@@ -158,6 +160,7 @@
 				537CEFFC22E7589C001A463F /* InterfaceController.swift */,
 				539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */,
 				537CF00022E7589C001A463F /* NotificationController.swift */,
+				53EABAD822F42CFF003F10D3 /* MapInterfaceController.swift */,
 				537CF00222E7589D001A463F /* Assets.xcassets */,
 				537CF00422E7589D001A463F /* Info.plist */,
 				537CF00522E7589D001A463F /* PushNotificationPayload.apns */,
@@ -311,7 +314,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				537CEFF122E7589C001A463F /* Assets.xcassets in Resources */,
+				53AECA5722F2D541007BE5B9 /* Assets.xcassets in Resources */,
 				537CEFEF22E75895001A463F /* Interface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				539B360022E85A50002ED8DB /* ClavierInterfaceController.swift in Sources */,
+				53EABADA22F42D04003F10D3 /* MapInterfaceController.swift in Sources */,
 				537CF00122E7589C001A463F /* NotificationController.swift in Sources */,
 				537CEFFF22E7589C001A463F /* ExtensionDelegate.swift in Sources */,
 				537CEFFD22E7589C001A463F /* InterfaceController.swift in Sources */,

@@ -12,7 +12,6 @@ import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     
-
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
         
@@ -72,11 +71,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any] = [:]) {
-        guard let lat = userInfo["lat"] as? Double, let lng = userInfo["lng"] as? Double  else {
+        guard let qui = userInfo["qui"] as? String else {
             return
         }
         
-        print("lat: \(lat) - lng: \(lng)")
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(qui, forKey: "qui")
     }
     
 }
