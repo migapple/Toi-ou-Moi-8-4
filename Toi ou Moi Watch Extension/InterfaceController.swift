@@ -64,13 +64,13 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate  {
         }
         activitePicker.setItems(pickerItems)
         activitePicker.focus()
-        activiteLabel.setText("Ou ?")
+        activiteLabel.setText("Etablissement ?")
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        activiteLabel.setText("Ou ?")
+        activiteLabel.setText("Etablissement ?")
         activitePicker.focus()
         
         quiDernier()
@@ -133,6 +133,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate  {
         if segueIdentifier == "toiSegue" {
             qui = "Toi"
         }
+        
         
         return [qui, quoi, ou]
     }

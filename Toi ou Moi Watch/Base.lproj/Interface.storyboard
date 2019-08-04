@@ -9,26 +9,41 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--mapSegue-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Toi_ou_Moi_Watch" customModuleProvider="target">
+                <controller identifier="mapSegue" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Toi_ou_Moi_Watch" customModuleProvider="target">
                     <items>
                         <picker height="42" alignment="left" focusStyle="stack" id="FNc-se-Ti0">
                             <connections>
                                 <action selector="pickerAction:" destination="AgC-eL-Hgc" id="3Mw-Zf-g4C"/>
                             </connections>
                         </picker>
-                        <label width="1" alignment="left" text="OU ?" id="W61-ok-sxp">
-                            <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                        </label>
+                        <group width="1" alignment="left" id="kOn-4M-PyM">
+                            <items>
+                                <label width="0.80000000000000004" alignment="left" text="Etablissement ?" id="W61-ok-sxp">
+                                    <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                </label>
+                            </items>
+                        </group>
                         <separator alignment="left" id="Chp-G6-TVh"/>
-                        <button width="1" alignment="left" title="Enregistrer" id="ShB-7b-I6Y">
-                            <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="enregistrer" destination="AgC-eL-Hgc" id="Jn0-vG-L0A"/>
-                            </connections>
-                        </button>
+                        <group width="134" alignment="left" id="rbH-Y2-N3f">
+                            <items>
+                                <button width="53" height="51" alignment="center" title="🎤" backgroundImage="micro" id="ShB-7b-I6Y">
+                                    <fontDescription key="font" type="system" pointSize="28"/>
+                                    <connections>
+                                        <action selector="enregistrer" destination="AgC-eL-Hgc" id="Jn0-vG-L0A"/>
+                                    </connections>
+                                </button>
+                                <button width="50" height="1" alignment="center" title="🗺" id="RWH-tn-uWT">
+                                    <fontDescription key="font" type="system" pointSize="35"/>
+                                    <connections>
+                                        <segue destination="266-qv-bjb" kind="push" id="4go-Pe-eCe"/>
+                                    </connections>
+                                </button>
+                            </items>
+                        </group>
                         <group width="1" alignment="left" id="8V1-Ij-Fb2">
                             <items>
                                 <button width="0.5" alignment="left" title="Toi " id="vOb-XG-k8L">
@@ -54,7 +69,7 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="200" y="347"/>
+            <point key="canvasLocation" x="200" y="295.5"/>
         </scene>
         <!--Clavier Interface Controller-->
         <scene sceneID="bcb-m5-jSh">
@@ -202,6 +217,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pAe-ut-dvF"/>
+        <segue reference="ypE-Jw-jXq"/>
     </inferredMetricsTieBreakers>
 </document>
