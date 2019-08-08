@@ -28,20 +28,21 @@
                             </items>
                         </group>
                         <separator alignment="left" id="Chp-G6-TVh"/>
-                        <group width="134" alignment="left" id="rbH-Y2-N3f">
+                        <group width="1" alignment="left" id="rbH-Y2-N3f">
                             <items>
-                                <button width="53" height="51" alignment="center" title="🎤" backgroundImage="micro" id="ShB-7b-I6Y">
+                                <button width="0.33000000000000002" height="48" alignment="center" backgroundImage="micro1" id="ShB-7b-I6Y">
                                     <fontDescription key="font" type="system" pointSize="28"/>
                                     <connections>
                                         <action selector="enregistrer" destination="AgC-eL-Hgc" id="Jn0-vG-L0A"/>
                                     </connections>
                                 </button>
-                                <button width="50" height="1" alignment="center" title="🗺" id="RWH-tn-uWT">
+                                <button width="0.33000000000000002" height="48" alignment="center" backgroundImage="map1" id="RWH-tn-uWT">
                                     <fontDescription key="font" type="system" pointSize="35"/>
                                     <connections>
                                         <segue destination="266-qv-bjb" kind="push" id="4go-Pe-eCe"/>
                                     </connections>
                                 </button>
+                                <button width="0.33000000000000002" height="48" alignment="right" backgroundImage="spreadSheet" id="gqs-f0-1AD"/>
                             </items>
                         </group>
                         <group width="1" alignment="left" id="8V1-Ij-Fb2">
