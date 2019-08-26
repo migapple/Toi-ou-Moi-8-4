@@ -75,63 +75,75 @@ class ClavierInterfaceController: WKInterfaceController, CLLocationManagerDelega
         if display.count != 0 {
             display.removeLast()
             displayLabel.setText(display)
+            WKInterfaceDevice.current().play(.click)
         }
     }
     
     @IBAction func touche1() {
         display.append("1")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche2() {
         display.append("2")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche3() {
         display.append("3")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche4() {
         display.append("4")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche5() {
         display.append("5")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche6() {
         display.append("6")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche7() {
         display.append("7")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func 	touche8() {
         display.append("8")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche9() {
         display.append("9")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func touche0() {
         display.append("0")
         displayLabel.setText(display)
+        WKInterfaceDevice.current().play(.click)
     }
     
     @IBAction func toucheVirgule() {
         if !display.contains(",") {
             display.append(",")
             displayLabel.setText(display)
+            WKInterfaceDevice.current().play(.click)
         }
     }
     
@@ -142,6 +154,7 @@ class ClavierInterfaceController: WKInterfaceController, CLLocationManagerDelega
         if quoi == "Restau" {
             defaults.set(qui, forKey: "qui")
         }
+        WKInterfaceDevice.current().play(.click)
         pop()
     }
 }

@@ -98,6 +98,7 @@ class InterfaceController: WKInterfaceController, CLLocationManagerDelegate  {
                 activite.activites!.append(activiteSetup)
             }
         }
+
         return activite
     }
     

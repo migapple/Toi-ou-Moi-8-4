@@ -17,13 +17,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>ToiOuMoi a besoin de vous localiser</string>
+	<string>ToiOuMoi a besoin de vous localiser pour afficher l&apos;endroit sur une carte, les données ne sont pas collectées</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>ToiOuMoi a besoin de vous localiser</string>
+	<string>ToiOuMoi a besoin de vous localiser pour afficher l&apos;endroit sur une carte, les données ne sont pas collectées</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

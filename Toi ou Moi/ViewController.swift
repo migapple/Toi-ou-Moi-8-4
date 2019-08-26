@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import StoreKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
@@ -56,6 +57,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         setupData()
         
         chargementDeDepart()
+        
+        // MARK: Regarde le nombre d'utilisations pour Apple Store
+        let defaults = UserDefaults.standard
+        var used = defaults.integer(forKey: "used")
+        used = used + 1
+        if used % 10 == 0 {
+            print(used % 10)
+            SKStoreReviewController.requestReview()
+        }
+        defaults.set(used, forKey: "used")
         
         // MARK: - Recupération notification Apple Watch
         
