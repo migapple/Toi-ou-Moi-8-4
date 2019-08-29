@@ -10,8 +10,7 @@ import UIKit
 import CoreData
 import StoreKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
-{
+class ViewController: UIViewController {
     
     var taches : [Tache]?
 
@@ -30,12 +29,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // initSetup()
-        
-        maTableView.dataSource = self
-        maTableView.delegate = self
-        
-        // initSetup()
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.gray
@@ -112,59 +105,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         maTableView.reloadData()
     }
     
-    @IBAction func quoiSegmentedControlAction(_ sender: Any) {
-        switch quoiSegmentedControl.selectedSegmentIndex {
-        case 0:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 0) {
-                quoi = choix
-                loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 0
-            }
-        case 1:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 1) {
-                quoi = choix
-                loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 1
-            }
-        case 2:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 2) {
-                quoi = choix
-                loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 2
-            }
-        case 3:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 3) {
-                quoi = choix
-                loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 3
-            }
-        case 4:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 4) {
-                quoi = choix
-                 loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 4
-            }
-        case 5:
-            if let choix = quoiSegmentedControl.titleForSegment(at: 5) {
-                quoi = choix
-                 loadData(moisEncours: 0, choix: quoi)
-                miseAjourTotal(taches: taches!)
-                maTableView.reloadData()
-                segment = 5
-            }
-        default:
-            print("Erreur")
-        }
+    @IBAction func quoiSegmentedControlAction(_ sender: UISegmentedControl) {
+        let index = sender.selectedSegmentIndex
+        let selection = quoiSegmentedControl.titleForSegment(at: index) ?? ""
+        choix(index: index, selection: selection)
+    }
+    
+    func choix(index: Int, selection: String) {
+        quoi = selection
+        loadData(moisEncours: 0, choix: quoi)
+        miseAjourTotal(taches: taches!)
+        maTableView.reloadData()
+        segment = index
+        
     }
     
     @IBAction func Tout(_ sender: Any) {
@@ -185,7 +138,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         miseAjourTotal(taches: taches!)
         maTableView.reloadData()
     }
-    
     
     @IBAction func PlusMoinsStepper(_ sender: UIStepper) {
         // On se déplace de mois en mois
@@ -208,23 +160,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func poubelle(_ sender: Any) {
-                let alertController:UIAlertController = UIAlertController(title: "Supression des données !", message: "Voulez-vous vraiment supprimer toutes les données ?", preferredStyle: .alert)
+        let alertController:UIAlertController = UIAlertController(title: "Supression des données !", message: "Voulez-vous vraiment supprimer toutes les données ?", preferredStyle: .alert)
         
-                let cancelAction = UIAlertAction(title: "Non, annuler", style: .cancel) { action -> Void in
-                    // don't do anything
-                }
+        let cancelAction = UIAlertAction(title: "Non, annuler", style: .cancel) { action -> Void in
+            // don't do anything
+        }
         
-                let nextAction = UIAlertAction(title: "Oui", style: .destructive) { action -> Void in
-                    self.clearData()
-                    self.taches = []
-                    self.maTableView.reloadData()
-                    self.miseAjourTotal(taches: self.taches!)
-                }
+        let nextAction = UIAlertAction(title: "Oui", style: .destructive) { action -> Void in
+            self.clearData()
+            self.taches = []
+            self.maTableView.reloadData()
+            self.miseAjourTotal(taches: self.taches!)
+        }
         
-                alertController.addAction(cancelAction)
-                alertController.addAction(nextAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(nextAction)
         
-                self.present(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
@@ -247,7 +199,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         alertController.addAction(nextAction)
         
         self.present(alertController, animated: true, completion: nil)
-        
     }
     
     @IBAction func export(_ sender: Any) {
@@ -293,6 +244,26 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddEvtSegue" {
+            let viewVC = segue.destination as! AjoutViewController
+            viewVC.selection = segment
+            viewVC.isEditing = false
+        }
+        
+        if segue.identifier == "Modifier" {
+            let indexPath = maTableView.indexPathForSelectedRow
+            let tache = taches?[indexPath!.row]
+            let viewVC = segue.destination as! AjoutViewController
+            viewVC.isEditing = true
+            viewVC.tache = tache
+            viewVC.selection = segment
+        }
+    }
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     // MARK - Gestion de la TableView
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -344,23 +315,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if editingStyle == .insert {
             print("insert")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddEvtSegue" {
-            let viewVC = segue.destination as! AjoutViewController
-            viewVC.selection = segment
-            viewVC.isEditing = false
-        }
-        
-        if segue.identifier == "Modifier" {
-            let indexPath = maTableView.indexPathForSelectedRow
-            let tache = taches?[indexPath!.row]
-            let viewVC = segue.destination as! AjoutViewController
-            viewVC.isEditing = true
-            viewVC.tache = tache
-            viewVC.selection = segment
         }
     }
 }

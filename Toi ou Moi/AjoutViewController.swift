@@ -17,9 +17,8 @@ protocol AjoutViewControllerDelegate {
     func myVCDidFinish(controller:AjoutViewController)
 }
 
-class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
+class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-
     @IBOutlet weak var quiLabelField: UILabel!
     @IBOutlet weak var quoiLabelField: UILabel!
     @IBOutlet weak var dateLabelField: UILabel!
@@ -60,19 +59,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //geolocalisation
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        carte.showsUserLocation = true
-        carte.userLocation.title = "Maison"
-        carte.userLocation.subtitle = "Location"
         
-        // centre sur position utilisateur
-        guard let coordinate = locationManager.location?.coordinate else { return }
-        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
-        carte.setRegion(region, animated: true)
         
         let activite = readSetUp()
         
@@ -116,69 +103,7 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
        }
      }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        positionUtilisateur = locations[0]
-        lat = positionUtilisateur?.coordinate.latitude
-        lng = positionUtilisateur?.coordinate.longitude
-        var location: CLLocationCoordinate2D?
-        
-        if isEditing {
-            latLabel.text = "\(tache?.lat ?? 0)"
-            lngLabel.text = "\(tache?.lng ?? 0)"
-        } else {
-            latLabel.text = "\(lat!)"
-            lngLabel.text = "\(lng!)"
-            
-            // Transfert vers Apple Watch
-            // WCSession.default.transferUserInfo(["lat": lat!, "lng": lng])
-            
-        }
     
-        let latDelta:CLLocationDegrees = 0.05
-        let lngDelta:CLLocationDegrees = 0.05
-        
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
-        
-        if isEditing {
-            location = CLLocationCoordinate2DMake(tache?.lat ?? 0, tache?.lng ?? 0)
-        } else {
-            location = CLLocationCoordinate2DMake(lat!, lng!)
-        }
-        
-        let region:MKCoordinateRegion = MKCoordinateRegion(center: location!, span: span)
-        
-        carte.setRegion(region, animated: true)
-    }
-    
-    func annotation() {
-        carte.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        let coordinate = CLLocationCoordinate2D(latitude: tache!.lat, longitude: tache!.lng)
-        let annotation = Annotation(coordinate: coordinate, title: tache?.libelle, subtitle: "")
-        carte.addAnnotation(annotation)
-        //let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
-        
-        carte.setRegion(annotation.region, animated: true)
-        
-    }
-    
-    final class Annotation: NSObject, MKAnnotation {
-        var coordinate: CLLocationCoordinate2D
-        var title: String?
-        var subtitle: String?
-        
-        init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
-            self.coordinate = coordinate
-            self.title = title
-            self.subtitle = subtitle
-            
-            super.init()
-        }
-        
-        var region: MKCoordinateRegion {
-            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-            return MKCoordinateRegion(center: coordinate, span: span)
-        }
-    }
     
     func affiche(tache: Tache)  {
         let dateFormatter = DateFormatter()
@@ -244,6 +169,11 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
+        // bug au démarrage
+        if dateLabelField.text == "" {
+            dateLabelField.text = dateFormatter.string(from: Date())
+        }
+        
         let maDate:Date = dateFormatter.date(from: dateLabelField.text!)!
         numberFormatter.locale = Locale(identifier: "fr_FR")
         let prixDouble = numberFormatter.number(from: prixTextField.text!) as! Double
@@ -335,3 +265,73 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Dispose of any resources that can be recreated.
     }
 }
+
+extension AjoutViewController: CLLocationManagerDelegate {
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        positionUtilisateur = locations[0]
+        lat = positionUtilisateur?.coordinate.latitude
+        lng = positionUtilisateur?.coordinate.longitude
+        var location: CLLocationCoordinate2D?
+        
+        if isEditing {
+            latLabel.text = "\(tache?.lat ?? 0)"
+            lngLabel.text = "\(tache?.lng ?? 0)"
+        } else {
+            latLabel.text = "\(lat!)"
+            lngLabel.text = "\(lng!)"
+            
+            // Transfert vers Apple Watch
+            // WCSession.default.transferUserInfo(["lat": lat!, "lng": lng])
+            
+        }
+        
+        let latDelta:CLLocationDegrees = 0.05
+        let lngDelta:CLLocationDegrees = 0.05
+        
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lngDelta)
+        
+        if isEditing {
+            location = CLLocationCoordinate2DMake(tache?.lat ?? 0, tache?.lng ?? 0)
+        } else {
+            location = CLLocationCoordinate2DMake(lat!, lng!)
+        }
+        
+        let region:MKCoordinateRegion = MKCoordinateRegion(center: location!, span: span)
+        
+        carte.setRegion(region, animated: true)
+    }
+    
+    func annotation() {
+        carte.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        let coordinate = CLLocationCoordinate2D(latitude: tache!.lat, longitude: tache!.lng)
+        let annotation = Annotation(coordinate: coordinate, title: tache?.libelle, subtitle: "")
+        carte.addAnnotation(annotation)
+        //let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        
+        carte.setRegion(annotation.region, animated: true)
+        
+    }
+    
+    final class Annotation: NSObject, MKAnnotation {
+        var coordinate: CLLocationCoordinate2D
+        var title: String?
+        var subtitle: String?
+        
+        init(coordinate: CLLocationCoordinate2D, title: String?, subtitle: String?) {
+            self.coordinate = coordinate
+            self.title = title
+            self.subtitle = subtitle
+            
+            super.init()
+        }
+        
+        var region: MKCoordinateRegion {
+            let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            return MKCoordinateRegion(center: coordinate, span: span)
+        }
+    }
+}
+
+

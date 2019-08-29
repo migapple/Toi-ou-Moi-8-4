@@ -29,6 +29,7 @@
 		5381246722D089680052312F /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 5381246622D089680052312F /* pin.png */; };
 		5383B64422AA9ED100AAE2E2 /* CalculDates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5383B64322AA9ED100AAE2E2 /* CalculDates.swift */; };
 		539B360022E85A50002ED8DB /* ClavierInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */; };
+		53A01ACF2316782C0044B191 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A01ACE2316782C0044B191 /* NavigationViewController.swift */; };
 		53B7212822F727D6003C8870 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B7212722F727D5003C8870 /* Assets.xcassets */; };
 		53B7212E22F72A24003C8870 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B7212D22F72A24003C8870 /* Assets.xcassets */; };
 		53B7213022F733AE003C8870 /* map1.png in Resources */ = {isa = PBXBuildFile; fileRef = 53B7212F22F733AE003C8870 /* map1.png */; };
@@ -110,6 +111,7 @@
 		5381246622D089680052312F /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		5383B64322AA9ED100AAE2E2 /* CalculDates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculDates.swift; sourceTree = "<group>"; };
 		539B35FF22E85A50002ED8DB /* ClavierInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClavierInterfaceController.swift; sourceTree = "<group>"; };
+		53A01ACE2316782C0044B191 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		53B7212722F727D5003C8870 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		53B7212D22F72A24003C8870 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../_Udemy/Stephen deStefano/Basic Game/Basic Game WatchKit App/Assets.xcassets"; sourceTree = "<group>"; };
 		53B7212F22F733AE003C8870 /* map1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map1.png; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				53F23BDF22AFC1DA001911BE /* Setup.swift */,
 				5383B64322AA9ED100AAE2E2 /* CalculDates.swift */,
 				537DBC30229D7E7100F874A7 /* AjoutViewController.swift */,
+				53A01ACE2316782C0044B191 /* NavigationViewController.swift */,
 				537DBC32229D7EB500F874A7 /* TableViewCell.swift */,
 				53B7212722F727D5003C8870 /* Assets.xcassets */,
 				537DBC23229D3AF200F874A7 /* LaunchScreen.storyboard */,
@@ -374,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				537DBC33229D7EB500F874A7 /* TableViewCell.swift in Sources */,
+				53A01ACF2316782C0044B191 /* NavigationViewController.swift in Sources */,
 				5383B64422AA9ED100AAE2E2 /* CalculDates.swift in Sources */,
 				537DBC2F229D7E2D00F874A7 /* ViewController.swift in Sources */,
 				537DBC20229D3AF100F874A7 /* Toi_ou_Moi.xcdatamodeld in Sources */,
