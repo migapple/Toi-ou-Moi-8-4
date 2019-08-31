@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     var afficherTout = false
     var quoi = "Restau"
     var segment = 0
+    var selection = ""
     
     @IBOutlet weak var titreViewController: UINavigationItem!
     @IBOutlet weak var nbToiLabel: UILabel!
@@ -90,6 +91,7 @@ class ViewController: UIViewController {
         
         // On charge le mois en cours avec la première activite
         loadData(moisEncours: 0, choix: activite.activites![0])
+        selection = activite.activites?[0] ?? "Restau"
         
         let dateFormatter = DateFormatter()
         dateFormatter.locale = NSLocale(localeIdentifier: "fr_FR") as Locale
@@ -107,7 +109,7 @@ class ViewController: UIViewController {
     
     @IBAction func quoiSegmentedControlAction(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
-        let selection = quoiSegmentedControl.titleForSegment(at: index) ?? ""
+        selection = quoiSegmentedControl.titleForSegment(at: index) ?? ""
         choix(index: index, selection: selection)
     }
     
@@ -202,7 +204,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func export(_ sender: Any) {
-         exportDatabase()
+        exportDatabase(titreDuMois: titreViewController.title ?? "", selection: selection)
+        print(selection)
     }
     
     func miseAjourTotal(taches: [Tache]) {

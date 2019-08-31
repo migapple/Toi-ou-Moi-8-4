@@ -12,13 +12,16 @@ import CoreData
 
 extension ViewController {
     
-    func exportDatabase() {
+    func exportDatabase(titreDuMois: String, selection: String) {
         let exportString = createExportString()
-        saveAndExport(exportString: exportString)
+        saveAndExport(exportString: exportString, titreDuMois: titreDuMois, selection: selection)
     }
     
-    func saveAndExport(exportString: String) {
-        let exportFilePath = NSTemporaryDirectory() + "toiOuMoi.csv"
+    func saveAndExport(exportString: String, titreDuMois: String, selection: String) {
+        let titre1 = titreDuMois
+        let titre2 = titre1.replacingOccurrences(of: "/", with: "")
+        let exportFilePath = NSTemporaryDirectory() + "toiOuMoi\(selection)-\(titre2).csv"
+        print(exportFilePath)
         let exportFileURL = NSURL(fileURLWithPath: exportFilePath)
         FileManager.default.createFile(atPath: exportFilePath, contents: NSData() as Data, attributes: nil)
         //var fileHandleError: NSError? = nil

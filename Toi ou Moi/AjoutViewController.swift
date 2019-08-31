@@ -59,6 +59,19 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //geolocalisation
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        carte.showsUserLocation = true
+        carte.userLocation.title = "Maison"
+        carte.userLocation.subtitle = "Location"
+        
+        // centre sur position utilisateur
+        guard let coordinate = locationManager.location?.coordinate else { return }
+        let region = MKCoordinateRegion(center: coordinate, latitudinalMeters: 3000, longitudinalMeters: 3000)
+        carte.setRegion(region, animated: true)
         
         
         let activite = readSetUp()
@@ -267,7 +280,6 @@ class AjoutViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 }
 
 extension AjoutViewController: CLLocationManagerDelegate {
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         positionUtilisateur = locations[0]
